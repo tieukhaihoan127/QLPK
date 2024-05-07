@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsChiTietDichVu" targetNamespace="http://tempuri.org/dsChiTietDichVu.xsd" xmlns:mstns="http://tempuri.org/dsChiTietDichVu.xsd" xmlns="http://tempuri.org/dsChiTietDichVu.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsChiTietDichVu" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="dsChiTietDichVu" msprop:Generator_DataSetName="dsChiTietDichVu">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ChiTietDichVu" msprop:Generator_RowEvHandlerName="ChiTietDichVuRowChangeEventHandler" msprop:Generator_RowDeletedName="ChiTietDichVuRowDeleted" msprop:Generator_RowDeletingName="ChiTietDichVuRowDeleting" msprop:Generator_RowEvArgName="ChiTietDichVuRowChangeEvent" msprop:Generator_TablePropName="ChiTietDichVu" msprop:Generator_RowChangedName="ChiTietDichVuRowChanged" msprop:Generator_RowChangingName="ChiTietDichVuRowChanging" msprop:Generator_TableClassName="ChiTietDichVuDataTable" msprop:Generator_RowClassName="ChiTietDichVuRow" msprop:Generator_TableVarName="tableChiTietDichVu" msprop:Generator_UserTableName="ChiTietDichVu">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="MaGCD" msprop:Generator_ColumnPropNameInRow="MaGCD" msprop:Generator_ColumnPropNameInTable="MaGCDColumn" msprop:Generator_ColumnVarNameInTable="columnMaGCD" msprop:Generator_UserColumnName="MaGCD" type="xs:string" minOccurs="0" />
+              <xs:element name="MaDV" msprop:Generator_ColumnPropNameInRow="MaDV" msprop:Generator_ColumnPropNameInTable="MaDVColumn" msprop:Generator_ColumnVarNameInTable="columnMaDV" msprop:Generator_UserColumnName="MaDV" type="xs:string" minOccurs="0" />
+              <xs:element name="Ten" msprop:Generator_ColumnPropNameInRow="Ten" msprop:Generator_ColumnPropNameInTable="TenColumn" msprop:Generator_ColumnVarNameInTable="columnTen" msprop:Generator_UserColumnName="Ten" type="xs:string" minOccurs="0" />
+              <xs:element name="DonVi" msprop:Generator_ColumnPropNameInRow="DonVi" msprop:Generator_ColumnPropNameInTable="DonViColumn" msprop:Generator_ColumnVarNameInTable="columnDonVi" msprop:Generator_UserColumnName="DonVi" type="xs:string" minOccurs="0" />
+              <xs:element name="Gia" msprop:Generator_ColumnPropNameInRow="Gia" msprop:Generator_ColumnPropNameInTable="GiaColumn" msprop:Generator_ColumnVarNameInTable="columnGia" msprop:Generator_UserColumnName="Gia" type="xs:long" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
