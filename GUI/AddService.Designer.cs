@@ -154,8 +154,10 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel1);
+            this.MaximizeBox = false;
             this.Name = "AddService";
-            this.Text = "AddService";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Thêm dịch vụ";
             this.Load += new System.EventHandler(this.FormLoad);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

@@ -9,6 +9,8 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
 
 namespace GUI
 {
@@ -19,15 +21,17 @@ namespace GUI
         BUS_DichVu dv;
         BUS_BenhNhan bn;
         AdminInterface mainForm;
+        string role = "";
         private string id;
         private bool comboBoxEventRegistered = false;
         private int numDichVu = 0;
         DataGridViewComboBoxColumn comboBoxColumn1 = new DataGridViewComboBoxColumn();
-        DataGridViewComboBoxColumn comboBoxColumn2 = new DataGridViewComboBoxColumn();
         public ReferralForm(string id, AdminInterface mainForm)
         {
             InitializeComponent();
-            this.Height = 900;
+            this.Size = new System.Drawing.Size(930, 750);
+            this.MaximumSize = new System.Drawing.Size(930, 750);
+            this.MinimumSize = new System.Drawing.Size(930, 750);
             dataGridView1.EditingControlShowing += DataGridView1_EditingControlShowing;
             this.id = id;
             this.mainForm = mainForm;
@@ -166,35 +170,45 @@ namespace GUI
 
         }
 
+        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex == dataGridView1.Rows.Count - 1 && e.ColumnIndex == dataGridView1.Columns.Count - 1)
+            {
+                dataGridView1.Rows.Add();
+            }
+
+        }
+
         private void DataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             if (e.Control is ComboBox comboBox)
             {
+                comboBox.SelectedIndexChanged -= ComboBox_SelectedThuocIndexChanged;
                 comboBox.SelectedIndexChanged += ComboBox_SelectedThuocIndexChanged;
             }
         }
 
-        private BigInteger getTongTien()
-        {
-            int TongSoLuong = 0;
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                if (row.Cells["GiaBan"].Value != null)
-                {
-                    TongSoLuong += (int.Parse(row.Cells["GiaBan"].Value.ToString()));
-                }
-            }
-            return TongSoLuong;
-        }
-
         private void ComboBox_SelectedThuocIndexChanged(object sender, EventArgs e)
         {
+            dv = new BUS_DichVu("", "", 0, "", DateTime.Now, "");
+            BUS_GiayChiDinh ttt = new BUS_GiayChiDinh("", "", "", "", "", "", "", DateTime.Now, DateTime.Now, 0);
             ComboBox comboBox = sender as ComboBox;
             if (comboBox != null)
             {
                 string selectedValue = comboBox.SelectedItem.ToString();
                 DataTable dichVu = dv.getDVInfoByName(selectedValue);
                 int currentRowIndex = dataGridView1.CurrentCell.RowIndex;
+
+                if (currentRowIndex > 0)
+                {
+                    int indexValue = ttt.getIndexValueExistInColumn(selectedValue, dataGridView1);
+                    if (indexValue != -1)
+                    {
+                        MessageBox.Show("Dịch vụ đã tồn tại !");
+                        dataGridView1.Rows.RemoveAt(currentRowIndex);
+                        return;
+                    }
+                }
 
                 if (dataGridView1.Rows[currentRowIndex].Cells[1].Value == null)
                 {
@@ -206,7 +220,7 @@ namespace GUI
                     numDichVu++;
                     textBox11.Text = numDichVu.ToString();
                     dataGridView1.Rows[currentRowIndex].Cells[2].Value = dichVu.Rows[0]["Gia"].ToString().Trim();
-                    textBox12.Text = getTongTien().ToString();
+                    textBox12.Text = ttt.getTongTien(dataGridView1).ToString();
                 }
 
             }
@@ -227,52 +241,78 @@ namespace GUI
 
         private void button2_Click(object sender, EventArgs e)
         {
-            ViewPatient form = new ViewPatient(mainForm);
+            ViewPatient form = new ViewPatient(mainForm, role);
             form.updateCurrent(id);
             form.Show();
             this.Hide();
         }
 
+        public bool IsDataGridViewEmpty(DataGridView dataGridView)
+        {
+            if (dataGridView == null || dataGridView.Rows.Count == 0)
+                return true;
+
+            foreach (DataGridViewRow row in dataGridView.Rows)
+            {
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    if (cell.Value != null && !string.IsNullOrEmpty(cell.Value.ToString()))
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            string bn = textBox1.Text;
-            string tiensu = comboBox1.Text;
-            string chandoan = comboBox2.Text;
-            string trieuchung = richTextBox1.Text;
-            string loidan = richTextBox2.Text;
-            BigInteger total = BigInteger.Parse(textBox12.Text);
-            DateTime tk = dateTimePicker3.Value;
-
-            if (radioButton1.Checked == true)
+            if(IsDataGridViewEmpty(dataGridView1) == false)
             {
-                gcd = new BUS_GiayChiDinh("", bn, tiensu, chandoan, trieuchung, loidan, "Active", DateTime.Now, tk, total);
+                BUS_GiayChiDinh ttt = new BUS_GiayChiDinh("", "", "", "", "", "", "", DateTime.Now, DateTime.Now, 0);
+                string bn = textBox1.Text;
+                string tiensu = comboBox1.Text;
+                string chandoan = comboBox2.Text;
+                string trieuchung = richTextBox1.Text;
+                string loidan = richTextBox2.Text;
+                BigInteger total = ttt.getTongTien(dataGridView1);
+                DateTime tk = dateTimePicker3.Value;
+
+                if (radioButton1.Checked == true)
+                {
+                    gcd = new BUS_GiayChiDinh("", bn, tiensu, chandoan, trieuchung, loidan, "Active", DateTime.Now, tk, total);
+                }
+                else
+                {
+                    gcd = new BUS_GiayChiDinh("", bn, tiensu, chandoan, trieuchung, loidan, "Active", DateTime.Now, DateTime.Now, total);
+                }
+
+                gcd.addQuery();
+
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (!row.IsNewRow)
+                    {
+                        string name = row.Cells[0].Value.ToString();
+                        string dvt = row.Cells[1].Value.ToString();
+                        BigInteger gia = BigInteger.Parse(row.Cells[2].Value.ToString());
+                        dv = new BUS_DichVu("", "", 0, "", DateTime.Now, "");
+                        DataTable dt1 = dv.getDVInfoByName(name);
+                        string mat = dt1.Rows[0]["MaDV"].ToString().Trim();
+                        gcd.addDetailService(mat, name, dvt, gia);
+                    }
+                }
+
+                string maToa = gcd.getCurrentMaToa();
+
+                ReferralPrinting form = new ReferralPrinting(id, maToa);
+                form.ShowDialog(this);
             }
             else
             {
-                gcd = new BUS_GiayChiDinh("", bn, tiensu, chandoan, trieuchung, loidan, "Active", DateTime.Now, DateTime.Now, total);
+                MessageBox.Show("Bạn chưa chỉ định dịch vụ nào !");
+                return;
             }
-
-            gcd.addQuery();
-
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                if (!row.IsNewRow)
-                {
-                    string name = row.Cells[0].Value.ToString();
-                    string dvt = row.Cells[1].Value.ToString();
-                    BigInteger gia = BigInteger.Parse(row.Cells[2].Value.ToString());
-                    dv = new BUS_DichVu("", "", 0, "", DateTime.Now, ""); ;
-                    DataTable dt1 = dv.getDVInfoByName(name);
-                    string mat = dt1.Rows[0]["MaDV"].ToString().Trim();
-                    gcd.addDetailService(mat, name, dvt, gia);
-                }
-            }
-
-            string maToa = gcd.getCurrentMaToa();
-
-            ReferralPrinting form = new ReferralPrinting(id, maToa);
-            this.Hide();
-            form.Show();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -282,8 +322,18 @@ namespace GUI
 
         private void button4_Click(object sender, EventArgs e)
         {
-            int currentRowIndex = dataGridView1.CurrentCell.RowIndex;
-            dataGridView1.Rows.RemoveAt(currentRowIndex);
+            BUS_GiayChiDinh ttt = new BUS_GiayChiDinh("", "", "", "", "", "", "", DateTime.Now, DateTime.Now, 0);
+            if (dataGridView1.Rows.Count != 0)
+            {
+                int currentRowIndex = dataGridView1.CurrentCell.RowIndex;
+                dataGridView1.Rows.RemoveAt(currentRowIndex);
+                textBox12.Text = ttt.getTongTien(dataGridView1).ToString();
+            }
+            else
+            {
+                MessageBox.Show("Không còn hàng nào để xóa !");
+                return;
+            }
         }
     }
 }

@@ -20,34 +20,59 @@ namespace GUI
         BUS_BacSi bs;
         BUS_TaiKhoan tk;
         AdminInterface mainForm;
+        string role = "";
 
-        public AddDoctor(AdminInterface form)
+        public AddDoctor(AdminInterface form,string role)
         {
             InitializeComponent();
+            this.Size = new Size(533, 580);
+            this.MaximumSize = new Size(533, 580);
+            this.MinimumSize = new Size(533, 580);
+            this.role = role;
             mainForm = form;    
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            mainForm.openChildForm(new DoctorManagement(mainForm));
+            mainForm.openChildForm(new DoctorManagement(mainForm, role));
             this.Hide();
             mainForm.Show();
         }
 
-        private string getName(string name)
+        private void textBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            string lower = name.ToLower();
-            string[] nameParts = lower.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-            return nameParts[nameParts.Length - 1];
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
 
-        private string getPass(string pass)
+        private void textBox_KeyPress_Length(object sender, KeyPressEventArgs e)
         {
-            string lower = pass.ToLower();
-            string[] nameParts = lower.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-            string mk = string.Join(" ", nameParts);
-            return mk;
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox2.Text.Length != 10)
+            {
+                MessageBox.Show("Số điện thoại không hợp lệ ! Vui lòng nhập lại");
+                textBox2.Text = "";
+            }
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox3.Text.Length != 12)
+            {
+                MessageBox.Show("CCCD/CMND không hợp lệ ! Vui lòng nhập lại");
+                textBox3.Text = "";
+            }
+        }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -66,17 +91,20 @@ namespace GUI
                 string lang = textBox10.Text;
                 string gender = comboBox1.Text;
 
-                string username = getName(ten) + phone;
-                string pass = getPass(ten);
-
                 nv = new BUS_NhanVien("", ten, phone, gender, email, contact, CMND, "BacSi", date, salary);
                 bs = new BUS_BacSi("", chuyen, hv, yoe, lang, "Active");
+
+                string username = nv.getName(ten) + phone;
+                string pass = nv.getPass(ten);
+
                 nv.addQuery();
                 bs.addQuery();
+
                 string id = nv.getDoctorDesc().Rows[0]["MaNV"].ToString().Trim();
                 tk = new BUS_TaiKhoan(username, pass, "Active", id, DateTime.Now);
                 tk.addQuery();
-                mainForm.openChildForm(new DoctorManagement(mainForm));
+
+                mainForm.openChildForm(new DoctorManagement(mainForm, role));
                 this.Hide();
                 mainForm.Show();
             }

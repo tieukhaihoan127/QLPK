@@ -17,10 +17,15 @@ namespace GUI
     {
         BUS_DichVu dv;
         AdminInterface mainForm;
-        public AddService(AdminInterface mainForm)
+        string role = "";
+        public AddService(AdminInterface mainForm, string role)
         {
             InitializeComponent();
+            this.Size = new Size(380, 380);
+            this.MaximumSize = new Size(380, 380);
+            this.MinimumSize = new Size(380, 380);
             this.mainForm = mainForm;
+            this.role = role;
         }
 
         private void loadComboBox()
@@ -47,7 +52,7 @@ namespace GUI
 
                 dv = new BUS_DichVu("", ten, gia, donvi, DateTime.Now, "Active");
                 dv.addQuery();
-                mainForm.openChildForm(new ServiceManagement(mainForm));
+                mainForm.openChildForm(new ServiceManagement(mainForm, role));
                 this.Hide();
                 mainForm.Show();
             }
@@ -59,7 +64,7 @@ namespace GUI
 
         private void button2_Click(object sender, EventArgs e)
         {
-            mainForm.openChildForm(new ServiceManagement(mainForm));
+            mainForm.openChildForm(new ServiceManagement(mainForm, role));
             this.Hide();
             mainForm.Show();
         }

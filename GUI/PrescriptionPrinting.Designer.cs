@@ -63,7 +63,7 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(662, 80);
+            this.label1.Location = new System.Drawing.Point(665, 80);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(46, 18);
             this.label1.TabIndex = 2;
@@ -77,9 +77,10 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.reportViewer1);
+            this.MaximizeBox = false;
             this.Name = "PrescriptionPrinting";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "PrescriptionPrinting";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Phiếu thuốc";
             this.Load += new System.EventHandler(this.PrescriptionPrinting_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dsChiTietToaThuoc1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

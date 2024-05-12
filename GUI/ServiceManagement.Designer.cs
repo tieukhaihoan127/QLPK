@@ -37,12 +37,11 @@ namespace GUI
             this.button8 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel12 = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button12 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
@@ -52,6 +51,7 @@ namespace GUI
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button7 = new System.Windows.Forms.Button();
             this.panel11.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -67,7 +67,7 @@ namespace GUI
             this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel11.Location = new System.Drawing.Point(0, 0);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(1155, 507);
+            this.panel11.Size = new System.Drawing.Size(1155, 442);
             this.panel11.TabIndex = 0;
             // 
             // groupBox2
@@ -80,7 +80,7 @@ namespace GUI
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(0, 136);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1155, 371);
+            this.groupBox2.Size = new System.Drawing.Size(1155, 306);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Danh sách dịch vụ";
@@ -88,7 +88,7 @@ namespace GUI
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(550, 295);
+            this.label1.Location = new System.Drawing.Point(550, 246);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(46, 18);
             this.label1.TabIndex = 3;
@@ -96,7 +96,7 @@ namespace GUI
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(627, 288);
+            this.button9.Location = new System.Drawing.Point(627, 239);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(118, 33);
             this.button9.TabIndex = 2;
@@ -106,7 +106,7 @@ namespace GUI
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(394, 288);
+            this.button8.Location = new System.Drawing.Point(385, 239);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(129, 33);
             this.button8.TabIndex = 1;
@@ -116,22 +116,23 @@ namespace GUI
             // 
             // dataGridView1
             // 
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(17, 23);
+            this.dataGridView1.Location = new System.Drawing.Point(17, 33);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1120, 234);
+            this.dataGridView1.Size = new System.Drawing.Size(1120, 180);
             this.dataGridView1.TabIndex = 0;
             // 
             // panel12
             // 
             this.panel12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
+            this.panel12.Controls.Add(this.button7);
+            this.panel12.Controls.Add(this.button3);
             this.panel12.Controls.Add(this.label3);
             this.panel12.Controls.Add(this.label2);
-            this.panel12.Controls.Add(this.comboBox2);
             this.panel12.Controls.Add(this.groupBox1);
             this.panel12.Controls.Add(this.label12);
             this.panel12.Controls.Add(this.button1);
@@ -143,6 +144,20 @@ namespace GUI
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(1155, 136);
             this.panel12.TabIndex = 0;
+            // 
+            // button3
+            // 
+            this.button3.AccessibleRole = System.Windows.Forms.AccessibleRole.Clock;
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(238)))), ((int)(((byte)(242)))));
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(417, 20);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(106, 24);
+            this.button3.TabIndex = 13;
+            this.button3.Text = "Tìm kiếm";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label3
             // 
@@ -164,19 +179,9 @@ namespace GUI
             this.label2.TabIndex = 4;
             this.label2.Text = "Từ :";
             // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(400, 17);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(170, 24);
-            this.comboBox2.TabIndex = 12;
-            this.comboBox2.Text = "Tìm kiếm theo :";
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.button12);
-            this.groupBox1.Controls.Add(this.button3);
             this.groupBox1.Controls.Add(this.button6);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.button5);
@@ -195,26 +200,13 @@ namespace GUI
             this.button12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(238)))), ((int)(((byte)(242)))));
             this.button12.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button12.Location = new System.Drawing.Point(251, 27);
+            this.button12.Location = new System.Drawing.Point(273, 27);
             this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(144, 30);
+            this.button12.Size = new System.Drawing.Size(233, 30);
             this.button12.TabIndex = 12;
-            this.button12.Text = "Xem thông tin";
+            this.button12.Text = "Xem thông tin dịch vụ";
             this.button12.UseVisualStyleBackColor = false;
             this.button12.Click += new System.EventHandler(this.button12_Click_1);
-            // 
-            // button3
-            // 
-            this.button3.AccessibleRole = System.Windows.Forms.AccessibleRole.Clock;
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(238)))), ((int)(((byte)(242)))));
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(985, 27);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(106, 30);
-            this.button3.TabIndex = 11;
-            this.button3.Text = "Xuất excel";
-            this.button3.UseVisualStyleBackColor = false;
             // 
             // button6
             // 
@@ -222,11 +214,11 @@ namespace GUI
             this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(238)))), ((int)(((byte)(242)))));
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.Location = new System.Drawing.Point(807, 27);
+            this.button6.Location = new System.Drawing.Point(985, 27);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(106, 30);
             this.button6.TabIndex = 10;
-            this.button6.Text = "Thùng rác";
+            this.button6.Text = "Xem xóa";
             this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
@@ -236,9 +228,9 @@ namespace GUI
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(238)))), ((int)(((byte)(242)))));
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(106, 27);
+            this.button2.Location = new System.Drawing.Point(110, 27);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(97, 30);
+            this.button2.Size = new System.Drawing.Size(119, 30);
             this.button2.TabIndex = 6;
             this.button2.Text = "Thêm";
             this.button2.UseVisualStyleBackColor = false;
@@ -250,7 +242,7 @@ namespace GUI
             this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(238)))), ((int)(((byte)(242)))));
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(456, 27);
+            this.button5.Location = new System.Drawing.Point(631, 27);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(97, 30);
             this.button5.TabIndex = 9;
@@ -264,7 +256,7 @@ namespace GUI
             this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(238)))), ((int)(((byte)(242)))));
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(631, 27);
+            this.button4.Location = new System.Drawing.Point(813, 27);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(97, 30);
             this.button4.TabIndex = 8;
@@ -290,6 +282,7 @@ namespace GUI
             this.button1.Size = new System.Drawing.Size(33, 25);
             this.button1.TabIndex = 4;
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // dateTimePicker1
             // 
@@ -311,17 +304,29 @@ namespace GUI
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(127, 17);
+            this.textBox1.Location = new System.Drawing.Point(127, 21);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(267, 22);
+            this.textBox1.Size = new System.Drawing.Size(284, 22);
             this.textBox1.TabIndex = 3;
             this.textBox1.Text = "Nhập từ khóa :";
+            this.textBox1.Click += new System.EventHandler(this.textBox1_TextClick);
+            // 
+            // button7
+            // 
+            this.button7.BackgroundImage = global::GUI.Properties.Resources.pngwing1;
+            this.button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button7.Location = new System.Drawing.Point(17, 19);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(35, 24);
+            this.button7.TabIndex = 17;
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // ServiceManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1155, 507);
+            this.ClientSize = new System.Drawing.Size(1155, 442);
             this.Controls.Add(this.panel11);
             this.MaximizeBox = false;
             this.Name = "ServiceManagement";
@@ -345,7 +350,6 @@ namespace GUI
         private System.Windows.Forms.Panel panel12;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button5;
@@ -353,7 +357,6 @@ namespace GUI
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Label label1;
@@ -361,5 +364,7 @@ namespace GUI
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        private Button button3;
+        private Button button7;
     }
 }

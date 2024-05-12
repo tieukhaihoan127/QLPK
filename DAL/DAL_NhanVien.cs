@@ -62,11 +62,28 @@ namespace DAL
             return Connection.selectQuery(query);
         }
 
+        public DataTable selectDataByID(string id)
+        {
+            string query = "SELECT * FROM NhanVien,TaiKhoan WHERE NhanVien.MaNV = TaiKhoan.MaNV AND NhanVien.MaNV = '" + id + "'";
+            return Connection.selectQuery(query);
+        }
+
+        public DataTable selectStatusNV(string id)
+        {
+            string query = "SELECT TaiKhoan.TrangThai FROM NhanVien,TaiKhoan WHERE NhanVien.MaNV = TaiKhoan.MaNV AND TaiKhoan.MaNV ='" + id + "'";
+            return Connection.selectQuery(query);
+        }
+
         public DataTable searchDoctor(string value)
         {
-            string query = "SELECT NhanVien.MaNV,NhanVien.Ten,NhanVien.GioiTinh,NhanVien.SDT,NhanVien.NgaySinh FROM NhanVien,BacSi WHERE NhanVien.MaNV = BacSi.MaNV AND Ten = N'" + value + "'";
+            string query = "SELECT NhanVien.MaNV,NhanVien.Ten,NhanVien.GioiTinh,NhanVien.SDT,NhanVien.NgaySinh FROM NhanVien,BacSi WHERE (NhanVien.MaNV = BacSi.MaNV) AND (BacSi.TrangThai = 'Active') AND (Ten LIKE N'%" + value + "%' OR NhanVien.MaNV LIKE N'%" + value + "%')";
             return Connection.selectQuery(query);
+        }
 
+        public DataTable selectTimeFilter(DateTime first, DateTime second)
+        {
+            string query = "SELECT NhanVien.MaNV,NhanVien.Ten,NhanVien.GioiTinh,NhanVien.SDT,NhanVien.NgaySinh FROM NhanVien,BacSi WHERE (NhanVien.MaNV = BacSi.MaNV) AND (BacSi.TrangThai = 'Active')  AND (NgaySinh >= '" + first + "' AND NgaySinh < '" + second + "')";
+            return Connection.selectQuery(query);
         }
 
         public DataTable getDoctorDesc()
@@ -75,42 +92,8 @@ namespace DAL
             return Connection.selectQuery(query);
         }
 
-        public string getId()
+        public void addQuery(string id)
         {
-            DataTable tb = getDoctorDesc();
-            string id = "";
-            if (tb.Rows.Count > 0)
-            {
-                id = tb.Rows[0][0].ToString();
-                int stt = int.Parse(id.Substring(2, 5)) + 1;
-                if (stt < 10)
-                {
-                    id = "BS000" + stt.ToString();
-                }
-                else if (stt < 100)
-                {
-                    id = "BS00" + stt.ToString();
-                }
-
-                else if (stt < 1000)
-                {
-                    id = "BS0" + stt.ToString();
-                }
-                else
-                {
-                    id = "BS" + stt.ToString();
-                }
-            }
-            else
-            {
-                id = "BS01";
-            }
-            return id;
-        }
-
-        public void addQuery()
-        {
-            string id = getId();
             string query = "INSERT INTO NhanVien VALUES ('" + id + "',N'" + nv._Ten + "','" + nv._SDT + "',N'" + nv._GioiTinh + "','" + nv._Email + "','" + nv._NgaySinh + "',N'" + nv._DiaChiLienHe + "','" + nv._CMND + "'," + nv._Luong + ",N'" + nv._VaiTro + "')";
             Connection.actionQuery(query);
         }

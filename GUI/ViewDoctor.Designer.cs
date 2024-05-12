@@ -94,6 +94,7 @@
             // 
             // textBox1
             // 
+            this.textBox1.Enabled = false;
             this.textBox1.Location = new System.Drawing.Point(16, 134);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(140, 22);
@@ -101,6 +102,7 @@
             // 
             // textBox2
             // 
+            this.textBox2.Enabled = false;
             this.textBox2.Location = new System.Drawing.Point(181, 134);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(140, 22);
@@ -118,6 +120,7 @@
             // 
             // textBox3
             // 
+            this.textBox3.Enabled = false;
             this.textBox3.Location = new System.Drawing.Point(351, 134);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(140, 22);
@@ -145,6 +148,7 @@
             // 
             // dateTimePicker1
             // 
+            this.dateTimePicker1.Enabled = false;
             this.dateTimePicker1.Location = new System.Drawing.Point(351, 223);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(308, 22);
@@ -162,6 +166,7 @@
             // 
             // textBox5
             // 
+            this.textBox5.Enabled = false;
             this.textBox5.Location = new System.Drawing.Point(16, 223);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(305, 22);
@@ -179,6 +184,7 @@
             // 
             // textBox6
             // 
+            this.textBox6.Enabled = false;
             this.textBox6.Location = new System.Drawing.Point(16, 310);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(305, 22);
@@ -196,6 +202,7 @@
             // 
             // textBox7
             // 
+            this.textBox7.Enabled = false;
             this.textBox7.Location = new System.Drawing.Point(354, 310);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(305, 22);
@@ -213,6 +220,7 @@
             // 
             // textBox8
             // 
+            this.textBox8.Enabled = false;
             this.textBox8.Location = new System.Drawing.Point(354, 406);
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(305, 22);
@@ -230,6 +238,7 @@
             // 
             // textBox9
             // 
+            this.textBox9.Enabled = false;
             this.textBox9.Location = new System.Drawing.Point(16, 406);
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(305, 22);
@@ -247,6 +256,7 @@
             // 
             // textBox10
             // 
+            this.textBox10.Enabled = false;
             this.textBox10.Location = new System.Drawing.Point(354, 512);
             this.textBox10.Name = "textBox10";
             this.textBox10.Size = new System.Drawing.Size(305, 22);
@@ -264,6 +274,7 @@
             // 
             // textBox11
             // 
+            this.textBox11.Enabled = false;
             this.textBox11.Location = new System.Drawing.Point(16, 512);
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new System.Drawing.Size(305, 22);
@@ -295,6 +306,7 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.Enabled = false;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "Nam",
@@ -306,8 +318,10 @@
             // 
             // textBox4
             // 
+            this.textBox4.Enabled = false;
             this.textBox4.Location = new System.Drawing.Point(354, 604);
             this.textBox4.Name = "textBox4";
+            this.textBox4.PasswordChar = '*';
             this.textBox4.Size = new System.Drawing.Size(305, 22);
             this.textBox4.TabIndex = 33;
             // 
@@ -335,9 +349,9 @@
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.Location = new System.Drawing.Point(12, 569);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(100, 22);
+            this.label15.Size = new System.Drawing.Size(180, 22);
             this.label15.TabIndex = 30;
-            this.label15.Text = "Tài khoản :";
+            this.label15.Text = "Trạng thái tài khoản :";
             // 
             // ViewDoctor
             // 
@@ -375,8 +389,10 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel1);
+            this.MaximizeBox = false;
             this.Name = "ViewDoctor";
-            this.Text = "AddDoctor";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Xem thông tin bác sĩ";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

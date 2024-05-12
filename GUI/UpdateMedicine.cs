@@ -10,6 +10,7 @@ using BUS;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Numerics;
+using System.Web.UI.WebControls;
 
 namespace GUI
 {
@@ -17,11 +18,16 @@ namespace GUI
     {
         BUS_Thuoc t;
         private static string id = "";
+        string role = "";
         AdminInterface mainForm;
-        public UpdateMedicine(AdminInterface form)
+        public UpdateMedicine(AdminInterface form, string role)
         {
             InitializeComponent();
+            this.Size = new Size(533, 570);
+            this.MaximumSize = new Size(533, 570);
+            this.MinimumSize = new Size(533, 570);
             mainForm = form;
+            this.role = role;
         }
 
         private void loadComboBox()
@@ -47,6 +53,44 @@ namespace GUI
             comboBox2.Items.Add("Ống");
         }
 
+        private void textBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBox1_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                MessageBox.Show("Vui lòng nhập dữ liệu vào ô Tên thuốc !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBox1.Focus();
+            }
+            if (string.IsNullOrWhiteSpace(textBox2.Text))
+            {
+                MessageBox.Show("Vui lòng nhập dữ liệu vào ô Nhà sản xuất !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBox2.Focus();
+            }
+            if (string.IsNullOrWhiteSpace(textBox3.Text))
+            {
+                MessageBox.Show("Vui lòng nhập dữ liệu vào ô Giá bán !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBox3.Focus();
+            }
+            if (string.IsNullOrWhiteSpace(textBox4.Text))
+            {
+                MessageBox.Show("Vui lòng nhập dữ liệu vào ô Giá nhập !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBox4.Focus();
+            }
+
+            if (string.IsNullOrWhiteSpace(richTextBox1.Text))
+            {
+                MessageBox.Show("Vui lòng nhập dữ liệu vào ô Cách dùng !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                richTextBox1.Focus();
+            }
+        }
+
         private void FormLoad(object sender, EventArgs e)
         {
             loadComboBox();
@@ -70,7 +114,7 @@ namespace GUI
 
         private void button2_Click(object sender, EventArgs e)
         {
-            mainForm.openChildForm(new MedicineManagement(mainForm));
+            mainForm.openChildForm(new MedicineManagement(mainForm, role));
             this.Hide();
             mainForm.Show();
         }
@@ -88,7 +132,7 @@ namespace GUI
 
             t = new BUS_Thuoc(id, ten, dvt, gn, gb, dm, nsx, DateTime.Now, cd, "Active");
             t.updateCurrentQuery();
-            mainForm.openChildForm(new MedicineManagement(mainForm));
+            mainForm.openChildForm(new MedicineManagement(mainForm, role));
             this.Hide();
             mainForm.Show();
         }

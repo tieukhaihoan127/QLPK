@@ -58,8 +58,8 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.textBox12 = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,11 +77,11 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label1.Location = new System.Drawing.Point(220, 20);
+            this.label1.Location = new System.Drawing.Point(149, 20);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(259, 38);
+            this.label1.Size = new System.Drawing.Size(402, 38);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Cập nhật bác sĩ";
+            this.label1.Text = "Cập nhật thông tin bác sĩ";
             // 
             // label2
             // 
@@ -99,6 +99,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(140, 22);
             this.textBox1.TabIndex = 2;
+            this.textBox1.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // textBox2
             // 
@@ -106,6 +107,8 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(140, 22);
             this.textBox2.TabIndex = 4;
+            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            this.textBox2.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // label3
             // 
@@ -123,6 +126,8 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(140, 22);
             this.textBox3.TabIndex = 6;
+            this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            this.textBox3.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // label4
             // 
@@ -146,6 +151,8 @@
             // 
             // dateTimePicker1
             // 
+            this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker1.Location = new System.Drawing.Point(351, 223);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(308, 22);
@@ -167,6 +174,7 @@
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(305, 22);
             this.textBox5.TabIndex = 11;
+            this.textBox5.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // label7
             // 
@@ -184,6 +192,7 @@
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(305, 22);
             this.textBox6.TabIndex = 14;
+            this.textBox6.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // label8
             // 
@@ -201,6 +210,8 @@
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(305, 22);
             this.textBox7.TabIndex = 16;
+            this.textBox7.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            this.textBox7.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // label9
             // 
@@ -218,6 +229,7 @@
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(305, 22);
             this.textBox8.TabIndex = 20;
+            this.textBox8.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // label10
             // 
@@ -235,6 +247,7 @@
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(305, 22);
             this.textBox9.TabIndex = 18;
+            this.textBox9.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // label11
             // 
@@ -252,6 +265,7 @@
             this.textBox10.Name = "textBox10";
             this.textBox10.Size = new System.Drawing.Size(305, 22);
             this.textBox10.TabIndex = 24;
+            this.textBox10.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // label12
             // 
@@ -269,6 +283,7 @@
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new System.Drawing.Size(305, 22);
             this.textBox11.TabIndex = 22;
+            this.textBox11.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // label13
             // 
@@ -323,8 +338,10 @@
             // 
             this.textBox4.Location = new System.Drawing.Point(354, 604);
             this.textBox4.Name = "textBox4";
+            this.textBox4.PasswordChar = '*';
             this.textBox4.Size = new System.Drawing.Size(305, 22);
             this.textBox4.TabIndex = 33;
+            this.textBox4.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // label14
             // 
@@ -336,23 +353,26 @@
             this.label14.TabIndex = 32;
             this.label14.Text = "Mật khẩu :";
             // 
-            // textBox12
-            // 
-            this.textBox12.Enabled = false;
-            this.textBox12.Location = new System.Drawing.Point(16, 604);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(305, 22);
-            this.textBox12.TabIndex = 31;
-            // 
             // label15
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.Location = new System.Drawing.Point(12, 569);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(100, 22);
+            this.label15.Size = new System.Drawing.Size(180, 22);
             this.label15.TabIndex = 30;
-            this.label15.Text = "Tài khoản :";
+            this.label15.Text = "Trạng thái tài khoản :";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "Active",
+            "Inactive"});
+            this.comboBox2.Location = new System.Drawing.Point(16, 602);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(305, 24);
+            this.comboBox2.TabIndex = 34;
             // 
             // UpdateDoctor
             // 
@@ -360,9 +380,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(238)))), ((int)(((byte)(242)))));
             this.ClientSize = new System.Drawing.Size(682, 763);
+            this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.label14);
-            this.Controls.Add(this.textBox12);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button2);
@@ -391,8 +411,10 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel1);
+            this.MaximizeBox = false;
             this.Name = "UpdateDoctor";
-            this.Text = "AddDoctor";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Cập nhật thông tin bác sĩ";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -432,7 +454,7 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox textBox12;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.ComboBox comboBox2;
     }
 }

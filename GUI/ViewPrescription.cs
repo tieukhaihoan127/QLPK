@@ -19,12 +19,16 @@ namespace GUI
         BUS_DichVu dv;
         BUS_Thuoc t;
         AdminInterface mainForm;
+        string role = "";
         private static string id = "";
-        public ViewPrescription(AdminInterface form)
+        public ViewPrescription(AdminInterface form, string role)
         {
             InitializeComponent();
-            this.Height = 900;
+            this.Size = new System.Drawing.Size(930, 750);
+            this.MaximumSize = new System.Drawing.Size(930, 750);
+            this.MinimumSize = new System.Drawing.Size(930, 750);
             mainForm = form;
+            this.role = role;
         }
 
         private void loadThuoc()
@@ -34,14 +38,6 @@ namespace GUI
             dataGridView1.Columns.Add("SoLuong", "Số lượng");
             dataGridView1.Columns.Add("GiaBan", "Giá bán");
             dataGridView1.Columns.Add("CachDung", "Cách dùng");
-        }
-
-        private void loadDV()
-        {
-            dataGridView2.Columns.Add("TenDV", "Tên dịch vụ");
-            dataGridView2.Columns.Add("DonVi", "Đơn vị");
-            dataGridView2.Columns.Add("SoLuong", "Số lượng");
-            dataGridView2.Columns.Add("GiaBan", "Giá bán");
         }
 
         public void updateCurrent(string MaToa)
@@ -65,7 +61,7 @@ namespace GUI
             textBox9.Text = dtbn.Rows[0]["NhipTho"].ToString().Trim();
             textBox10.Text = dtbn.Rows[0]["Mach"].ToString().Trim();
             textBox11.Text = dtt.Rows[0]["SoLuongThuoc"].ToString().Trim();
-            textBox12.Text = dtt.Rows[0]["SoLuongDichVu"].ToString().Trim();
+            textBox12.Text = dtt.Rows[0]["TongTien"].ToString().Trim();
 
             dateTimePicker1.Value = DateTime.Parse(dtt.Rows[0]["NgayLap"].ToString());
             dateTimePicker2.Value = DateTime.Parse(dtbn.Rows[0]["NgaySinh"].ToString());
@@ -81,10 +77,8 @@ namespace GUI
         private void FormLoad(object sender,EventArgs e)
         {
             loadThuoc();
-            loadDV();
             toa = new BUS_Toa("", "", "", "", "", "", "Active", 0, DateTime.Now, DateTime.Now,0);
             DataTable thuoc = toa.selectMaThuoc(id);
-            DataTable dichVu = toa.selectMaDV(id);
 
 
             foreach (DataRow row in thuoc.Rows)
@@ -110,33 +104,11 @@ namespace GUI
 
                 dataGridView1.Rows.Add(newRow);
             }
-
-            foreach (DataRow row in dichVu.Rows)
-            {
-                string maDV = row["MaDV"].ToString();
-
-                dv = new BUS_DichVu("", "", 0, "", DateTime.Now, "");
-                DataTable dvInfo = dv.getDVInfo(maDV);
-
-                DataGridViewRow newRow = new DataGridViewRow();
-
-                string first = row["Ten"].ToString().Trim();
-                string second = row["DonVi"].ToString().Trim();
-                string third = row["SoLuong"].ToString().Trim();
-                string fourth = row["Gia"].ToString().Trim();
-
-                newRow.Cells.Add(new DataGridViewTextBoxCell { Value = first });
-                newRow.Cells.Add(new DataGridViewTextBoxCell { Value = second });
-                newRow.Cells.Add(new DataGridViewTextBoxCell { Value = third });
-                newRow.Cells.Add(new DataGridViewTextBoxCell { Value = fourth });
-
-                dataGridView2.Rows.Add(newRow);
-            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            mainForm.openChildForm(new PrescriptionManagement(mainForm));
+            mainForm.openChildForm(new PrescriptionManagement(mainForm, role));
             this.Hide();
             mainForm.Show();
         }

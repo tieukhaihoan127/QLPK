@@ -18,21 +18,16 @@ namespace GUI
     {
         BUS_BenhNhan bn;
         AdminInterface mainForm;
+        string role = "";
         private static string id = "";
-        public ViewPatient(AdminInterface mainForm)
+        public ViewPatient(AdminInterface mainForm, string role)
         {
             InitializeComponent();
+            this.Size = new System.Drawing.Size(800, 650);
+            this.MaximumSize = new System.Drawing.Size(800, 650);
+            this.MinimumSize = new System.Drawing.Size(800, 650);
             this.mainForm = mainForm;
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox5_TextChanged(object sender, EventArgs e)
-        {
-
+            this.role = role;
         }
 
         public void generateBarcode()
@@ -77,15 +72,14 @@ namespace GUI
 
         private void button7_Click(object sender, EventArgs e)
         {
-            AdminInterface form = new AdminInterface();
-            form.openChildForm(new PatientManagement(mainForm));
+            mainForm.openChildForm(new PatientManagement(mainForm, role));
             this.Hide();
-            form.Show();
+            mainForm.Show();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Prescription form = new Prescription(id,mainForm);
+            Prescription form = new Prescription(id,mainForm, role);
             this.Hide();
             form.Show();
         }
@@ -95,6 +89,13 @@ namespace GUI
             ReferralForm form = new ReferralForm(id, mainForm);
             this.Hide();
             form.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            PrescriptionManagement form = new PrescriptionManagement(mainForm, id);
+            form.loadCurrentPatientPresciption();
+            this.Hide();
         }
     }
 }

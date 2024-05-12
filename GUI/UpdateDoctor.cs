@@ -18,17 +18,23 @@ namespace GUI
         BUS_BacSi bs;
         BUS_TaiKhoan acc;
         private static string id = "";
+        string role = "";
         private AdminInterface mainForm;
-        public UpdateDoctor(AdminInterface form)
+        public UpdateDoctor(AdminInterface form, string role)
         {
             InitializeComponent();
+            this.Size = new Size(533, 650);
+            this.MaximumSize = new Size(533, 650);
+            this.MinimumSize = new Size(533, 650);
             mainForm = form;
+            this.role = role;
         }
 
         public void SetDataGridView(string ID)
         {
             nv = new BUS_NhanVien("", "", "", "", "", "", "", "", DateTime.Now, 0);
             DataTable r = nv.selectNVByID(ID);
+            DataTable s = nv.selectStatusNV(ID);
             string ten = r.Rows[0]["Ten"].ToString();
             string sdt = r.Rows[0]["SDT"].ToString();
             string CMND = r.Rows[0]["CMND"].ToString();
@@ -41,7 +47,7 @@ namespace GUI
             string hocvan = r.Rows[0]["HocVan"].ToString();
             string KinhNghiem = r.Rows[0]["KinhNghiem"].ToString();
             string NgonNgu = r.Rows[0]["NgonNgu"].ToString();
-            string tk = r.Rows[0]["TenTK"].ToString();
+            string tk = s.Rows[0]["TrangThai"].ToString();
             string mk = r.Rows[0]["MatKhau"].ToString();
 
             textBox1.Text = ten.Trim();
@@ -56,7 +62,7 @@ namespace GUI
             textBox8.Text = KinhNghiem.Trim();
             textBox11.Text = hocvan.Trim();
             textBox10.Text = NgonNgu.Trim();
-            textBox12.Text = tk.Trim();
+            comboBox2.Text = tk.Trim();
             textBox4.Text = mk.Trim();
         }
 
@@ -64,6 +70,74 @@ namespace GUI
         {
             id = MaNV;
         }
+
+        private void textBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBox1_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                MessageBox.Show("Vui lòng nhập dữ liệu vào ô Họ tên !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBox1.Focus(); 
+            }
+            if (string.IsNullOrWhiteSpace(textBox2.Text))
+            {
+                MessageBox.Show("Vui lòng nhập dữ liệu vào ô Số điện thoại !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBox2.Focus();
+            }
+            if (string.IsNullOrWhiteSpace(textBox3.Text))
+            {
+                MessageBox.Show("Vui lòng nhập dữ liệu vào ô CMND !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBox3.Focus();
+            }
+            if (string.IsNullOrWhiteSpace(textBox4.Text))
+            {
+                MessageBox.Show("Vui lòng nhập dữ liệu vào ô Mật khẩu !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBox4.Focus();
+            }
+            if (string.IsNullOrWhiteSpace(textBox5.Text))
+            {
+                MessageBox.Show("Vui lòng nhập dữ liệu vào ô Email !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBox5.Focus();
+            }
+            if (string.IsNullOrWhiteSpace(textBox6.Text))
+            {
+                MessageBox.Show("Vui lòng nhập dữ liệu vào ô Địa chỉ liên hệ !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBox6.Focus();
+            }
+            if (string.IsNullOrWhiteSpace(textBox7.Text))
+            {
+                MessageBox.Show("Vui lòng nhập dữ liệu vào ô Lương !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBox7.Focus();
+            }
+            if (string.IsNullOrWhiteSpace(textBox8.Text))
+            {
+                MessageBox.Show("Vui lòng nhập dữ liệu vào ô Kinh nghiệm !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBox8.Focus();
+            }
+            if (string.IsNullOrWhiteSpace(textBox9.Text))
+            {
+                MessageBox.Show("Vui lòng nhập dữ liệu vào ô Chuyên ngành !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBox9.Focus();
+            }
+            if (string.IsNullOrWhiteSpace(textBox10.Text))
+            {
+                MessageBox.Show("Vui lòng nhập dữ liệu vào ô Ngôn ngữ !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBox10.Focus();
+            }
+            if (string.IsNullOrWhiteSpace(textBox11.Text))
+            {
+                MessageBox.Show("Vui lòng nhập dữ liệu vào ô Học vấn !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBox11.Focus();
+            }
+        }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -79,21 +153,33 @@ namespace GUI
             string hocvan = textBox11.Text;
             string KinhNghiem = textBox8.Text;
             string NgonNgu = textBox10.Text;
-            string taikhoan = textBox12.Text;
+            string tt = comboBox2.Text;
             string matkhau = textBox4.Text;
             nv = new BUS_NhanVien(id, ten, sdt, gender, email, diachi, CMND, "", time, luong);
             bs = new BUS_BacSi(id, chuyen, hocvan, KinhNghiem, NgonNgu, "");
-            acc = new BUS_TaiKhoan(taikhoan, matkhau, "", id, DateTime.Now);
+            acc = new BUS_TaiKhoan("", "", "", id, DateTime.Now);
+
             nv.updateQuery();
             bs.updateCurrentQuery();
-            mainForm.openChildForm(new DoctorManagement(mainForm));
+            acc.updatePasswod(matkhau);
+
+            if(tt == "Active")
+            {
+                acc.updateStatusActive(id);
+            }
+            else
+            {
+                acc.updateStatusInactive(id);
+            }
+
+            mainForm.openChildForm(new DoctorManagement(mainForm, role));
             this.Hide();
             mainForm.Show(); ;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            mainForm.openChildForm(new DoctorManagement(mainForm));
+            mainForm.openChildForm(new DoctorManagement(mainForm, role));
             this.Hide();
             mainForm.Show(); ;
         }

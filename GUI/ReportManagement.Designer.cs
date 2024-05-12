@@ -41,15 +41,14 @@ namespace GUI
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.button9 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel12 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
@@ -76,7 +75,7 @@ namespace GUI
             this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel11.Location = new System.Drawing.Point(0, 0);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(1155, 472);
+            this.panel11.Size = new System.Drawing.Size(1155, 446);
             this.panel11.TabIndex = 0;
             // 
             // label8
@@ -165,22 +164,34 @@ namespace GUI
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.dataGridView1);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.button9);
             this.groupBox2.Controls.Add(this.button8);
-            this.groupBox2.Controls.Add(this.dataGridView1);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(0, 163);
+            this.groupBox2.Location = new System.Drawing.Point(12, 161);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1152, 310);
+            this.groupBox2.Size = new System.Drawing.Size(1131, 287);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Báo cáo ";
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 23);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(1131, 180);
+            this.dataGridView1.TabIndex = 4;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(554, 244);
+            this.label1.Location = new System.Drawing.Point(540, 238);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(46, 18);
             this.label1.TabIndex = 3;
@@ -188,7 +199,7 @@ namespace GUI
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(631, 237);
+            this.button9.Location = new System.Drawing.Point(617, 231);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(118, 33);
             this.button9.TabIndex = 2;
@@ -198,7 +209,7 @@ namespace GUI
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(398, 237);
+            this.button8.Location = new System.Drawing.Point(384, 231);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(129, 33);
             this.button8.TabIndex = 1;
@@ -206,24 +217,12 @@ namespace GUI
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 20);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1152, 177);
-            this.dataGridView1.TabIndex = 0;
-            // 
             // panel12
             // 
             this.panel12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
-            this.panel12.Controls.Add(this.button2);
+            this.panel12.Controls.Add(this.label10);
             this.panel12.Controls.Add(this.label3);
             this.panel12.Controls.Add(this.label2);
-            this.panel12.Controls.Add(this.comboBox2);
             this.panel12.Controls.Add(this.button1);
             this.panel12.Controls.Add(this.dateTimePicker1);
             this.panel12.Controls.Add(this.dateTimePicker2);
@@ -233,21 +232,22 @@ namespace GUI
             this.panel12.Size = new System.Drawing.Size(1155, 80);
             this.panel12.TabIndex = 0;
             // 
-            // button2
+            // label10
             // 
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button2.Location = new System.Drawing.Point(310, 26);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(109, 25);
-            this.button2.TabIndex = 16;
-            this.button2.Text = "Làm mới";
-            this.button2.UseVisualStyleBackColor = true;
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.SystemColors.Control;
+            this.label10.Location = new System.Drawing.Point(27, 20);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(385, 38);
+            this.label10.TabIndex = 16;
+            this.label10.Text = "Doanh thu phòng khám ";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(866, 29);
+            this.label3.Location = new System.Drawing.Point(861, 28);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(32, 18);
             this.label3.TabIndex = 15;
@@ -257,37 +257,28 @@ namespace GUI
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(653, 28);
+            this.label2.Location = new System.Drawing.Point(648, 27);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(33, 18);
             this.label2.TabIndex = 4;
             this.label2.Text = "Từ :";
             // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(34, 26);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(270, 24);
-            this.comboBox2.TabIndex = 12;
-            this.comboBox2.Text = "Tìm kiếm theo :";
-            this.comboBox2.SelectedValueChanged += new System.EventHandler(this.comboBox2_SelectedValueChanged);
-            // 
             // button1
             // 
             this.button1.BackgroundImage = global::GUI.Properties.Resources.search;
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button1.Location = new System.Drawing.Point(1083, 26);
+            this.button1.Location = new System.Drawing.Point(1078, 25);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(33, 25);
             this.button1.TabIndex = 4;
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(696, 28);
+            this.dateTimePicker1.Location = new System.Drawing.Point(691, 27);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(153, 22);
             this.dateTimePicker1.TabIndex = 13;
@@ -296,7 +287,7 @@ namespace GUI
             // 
             this.dateTimePicker2.CustomFormat = "dd/MM/yyyy";
             this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker2.Location = new System.Drawing.Point(913, 28);
+            this.dateTimePicker2.Location = new System.Drawing.Point(908, 27);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(153, 22);
             this.dateTimePicker2.TabIndex = 14;
@@ -305,7 +296,7 @@ namespace GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1155, 472);
+            this.ClientSize = new System.Drawing.Size(1155, 446);
             this.Controls.Add(this.panel11);
             this.MaximizeBox = false;
             this.Name = "ReportManagement";
@@ -325,10 +316,8 @@ namespace GUI
         #endregion
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Panel panel12;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Label label1;
@@ -336,7 +325,6 @@ namespace GUI
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private Button button2;
         private Label label8;
         private TextBox textBox3;
         private Label label9;
@@ -346,5 +334,7 @@ namespace GUI
         private Label label5;
         private TextBox textBox1;
         private Label label4;
+        private Label label10;
+        private DataGridView dataGridView1;
     }
 }

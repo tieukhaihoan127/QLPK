@@ -182,8 +182,10 @@ namespace GUI
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel1);
+            this.MaximizeBox = false;
             this.Name = "ViewService";
-            this.Text = "AddService";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Xem thông tin dịch vụ";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

@@ -17,10 +17,23 @@ namespace GUI
     {
         BUS_Thuoc t;
         AdminInterface mainForm;
-        public AddMedicine(AdminInterface mainForm)
+        string role = "";
+        public AddMedicine(AdminInterface mainForm, string role)
         {
             InitializeComponent();
+            this.Size = new Size(533, 570);
+            this.MaximumSize = new Size(533, 570);
+            this.MinimumSize = new Size(533, 570);
             this.mainForm = mainForm;
+            this.role = role;
+        }
+
+        private void textBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
 
         private void loadComboBox()
@@ -66,7 +79,7 @@ namespace GUI
 
                 t = new BUS_Thuoc("", ten, dvt, gianhap, giaban, dm, NSX, DateTime.Now, cachdung, "Active");
                 t.addQuery();
-                mainForm.openChildForm(new MedicineManagement(mainForm));
+                mainForm.openChildForm(new MedicineManagement(mainForm, role));
                 this.Hide();
                 mainForm.Show();
             }
@@ -78,7 +91,7 @@ namespace GUI
 
         private void button2_Click(object sender, EventArgs e)
         {
-            mainForm.openChildForm(new MedicineManagement(mainForm));
+            mainForm.openChildForm(new MedicineManagement(mainForm,role));
             this.Hide();
             mainForm.Show();
         }

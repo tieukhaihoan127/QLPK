@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Numerics;
 using System.Text.RegularExpressions;
+using System.Web.UI.WebControls;
 
 namespace GUI
 {
@@ -19,11 +20,73 @@ namespace GUI
         BUS_BenhNhan bn;
         private static string id = "";
         private AdminInterface mainForm;
+        string role = "";
 
-        public UpdatePatient(AdminInterface form)
+        public UpdatePatient(AdminInterface form, string role)
         {
             InitializeComponent();
+            this.Size = new Size(700, 450);
+            this.MaximumSize = new Size(700, 450);
+            this.MinimumSize = new Size(700, 450);
             mainForm = form;
+            this.role = role;
+        }
+
+        private void textBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBox1_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                MessageBox.Show("Vui lòng nhập dữ liệu vào ô Tên bệnh nhân !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBox1.Focus();
+            }
+            if (string.IsNullOrWhiteSpace(textBox2.Text))
+            {
+                MessageBox.Show("Vui lòng nhập dữ liệu vào ô Số điện thoại !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBox2.Focus();
+            }
+            if (string.IsNullOrWhiteSpace(textBox3.Text))
+            {
+                MessageBox.Show("Vui lòng nhập dữ liệu vào ô Địa chỉ !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBox3.Focus();
+            }
+            if (string.IsNullOrWhiteSpace(textBox4.Text))
+            {
+                MessageBox.Show("Vui lòng nhập dữ liệu vào ô Cân nặng !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBox4.Focus();
+            }
+            if (string.IsNullOrWhiteSpace(textBox5.Text))
+            {
+                MessageBox.Show("Vui lòng nhập dữ liệu vào ô Sp02 !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBox5.Focus();
+            }
+            if (string.IsNullOrWhiteSpace(textBox6.Text))
+            {
+                MessageBox.Show("Vui lòng nhập dữ liệu vào ô Nhiệt độ !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBox6.Focus();
+            }
+            if (string.IsNullOrWhiteSpace(textBox7.Text))
+            {
+                MessageBox.Show("Vui lòng nhập dữ liệu vào ô Mạch !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBox7.Focus();
+            }
+            if (string.IsNullOrWhiteSpace(textBox8.Text))
+            {
+                MessageBox.Show("Vui lòng nhập dữ liệu vào ô Nhịp thở !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBox8.Focus();
+            }
+            if (string.IsNullOrWhiteSpace(textBox9.Text))
+            {
+                MessageBox.Show("Vui lòng nhập dữ liệu vào ô Huyết áp !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBox9.Focus();
+            }
         }
 
         public void updateCurrent(string MaBN)
@@ -50,7 +113,7 @@ namespace GUI
 
         private void button2_Click(object sender, EventArgs e)
         {
-            mainForm.openChildForm(new PatientManagement(mainForm));
+            mainForm.openChildForm(new PatientManagement(mainForm, role));
             this.Hide();
             mainForm.Show();
         }
@@ -72,7 +135,7 @@ namespace GUI
 
             bn = new BUS_BenhNhan(id, ten, sdt, ngaysinh, gioitinh, diachi, cannang, sp02, nhietdo, mach, huyetap, nhiptho, "Active", DateTime.Now);
             bn.updateCurrentQuery();
-            mainForm.openChildForm(new PatientManagement(mainForm));
+            mainForm.openChildForm(new PatientManagement(mainForm, role));
             this.Hide();
             mainForm.Show();
         }

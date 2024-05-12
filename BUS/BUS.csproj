@@ -57,7 +57,6 @@
     <Compile Include="BUS_NhanVien.cs" />
     <Compile Include="BUS_TaiKhoan.cs" />
     <Compile Include="BUS_Thuoc.cs" />
-    <Compile Include="BUS_TKAdmin.cs" />
     <Compile Include="BUS_Toa.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">

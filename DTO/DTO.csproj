@@ -191,17 +191,13 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTO_ChiTietDichVu.cs" />
-    <Compile Include="DTO_ChiTietToaThuoc.cs" />
     <Compile Include="DTO_BacSi.cs" />
     <Compile Include="DTO_BenhNhan.cs" />
     <Compile Include="DTO_DichVu.cs" />
     <Compile Include="DTO_GiayChiDinh.cs" />
     <Compile Include="DTO_NhanVien.cs" />
-    <Compile Include="DTO_QuanLyPhongKham.cs" />
     <Compile Include="DTO_TaiKhoan.cs" />
     <Compile Include="DTO_Thuoc.cs" />
-    <Compile Include="DTO_TKAdmin.cs" />
     <Compile Include="DTO_Toa.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">

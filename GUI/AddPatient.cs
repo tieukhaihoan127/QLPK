@@ -17,10 +17,23 @@ namespace GUI
     {
         BUS_BenhNhan bn;
         AdminInterface mainForm;
-        public AddPatient(AdminInterface form)
+        string role = "";
+        public AddPatient(AdminInterface form, string role)
         {
             InitializeComponent();
+            this.Size = new Size(700, 450);
+            this.MaximumSize = new Size(700, 450);
+            this.MinimumSize = new Size(700, 450);
+            this.role = role;
             mainForm  = form;
+        }
+
+        private void textBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -42,7 +55,7 @@ namespace GUI
 
                 bn = new BUS_BenhNhan("", ten, sdt, ngaysinh, gioitinh, diachi, cannang, sp02, nhietdo, mach, huyetap, nhiptho, "Active", DateTime.Now);
                 bn.addQuery();
-                mainForm.openChildForm(new PatientManagement(mainForm));
+                mainForm.openChildForm(new PatientManagement(mainForm, role));
                 this.Hide();
                 mainForm.Show();
             }
@@ -54,7 +67,7 @@ namespace GUI
 
         private void button2_Click(object sender, EventArgs e)
         {
-            mainForm.openChildForm(new PatientManagement(mainForm));
+            mainForm.openChildForm(new PatientManagement(mainForm,role));
             this.Hide();
             mainForm.Show();
         }

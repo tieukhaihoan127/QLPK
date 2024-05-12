@@ -30,9 +30,39 @@ namespace DAL
             return Connection.selectQuery(query);
         }
 
+        public DataTable selectVaiTro(string tk,string mk)
+        {
+            string query = "SELECT VaiTro FROM NhanVien WHERE MaNV IN (SELECT MaNV FROM TaiKhoan WHERE TenTK = '" + tk + "' AND MatKhau = '" + mk + "')";
+            return Connection.selectQuery(query);
+        }
+
+        public DataTable selectID(string tk, string mk)
+        {
+            string query = "SELECT MaNV FROM NhanVien WHERE MaNV IN (SELECT MaNV FROM TaiKhoan WHERE TenTK = '" + tk + "' AND MatKhau = '" + mk + "')";
+            return Connection.selectQuery(query);
+        }
+
+        public Boolean checkQuery(string tk, string mk)
+        {
+            string query = "SELECT * FROM TaiKhoan WHERE TenTK = '" + tk + "' AND MatKhau = '" + mk + "'";
+            return Connection.haveQuery(query);
+        }
+
         public void updatePasswod(string pass)
         {
-            string query = "UPDATE TaiKhoan SET MatKhau = '" + pass + "' WHERE TenTK = '" + tk._TenTK + "'";
+            string query = "UPDATE TaiKhoan SET MatKhau = '" + pass + "' WHERE MaNV = '" + tk._MaNV + "'";
+            Connection.actionQuery(query);
+        }
+
+        public void updateStatusActive(string id)
+        {
+            string query = "UPDATE TaiKhoan SET TrangThai = 'Active' WHERE MaNV = '" + id + "'";
+            Connection.actionQuery(query);
+        }
+
+        public void updateStatusInactive(string id)
+        {
+            string query = "UPDATE TaiKhoan SET TrangThai = 'Inactive' WHERE MaNV = '" + id + "'";
             Connection.actionQuery(query);
         }
     }

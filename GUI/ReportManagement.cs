@@ -17,22 +17,16 @@ namespace GUI
     {
         AdminInterface mainForm;
         int currentPage = 1;
-        int itemsPerPage = 6;
+        int itemsPerPage = 5;
+        string role = "";
         DataTable data;
         BUS_Toa toa;
         BUS_GiayChiDinh gcd;
-        public ReportManagement(AdminInterface form)
+        public ReportManagement(AdminInterface form, string role)
         {
             InitializeComponent();
             mainForm = form;
-        }
-
-        private void loadComboBox()
-        {
-            comboBox2.Items.Add("Báo cáo tổng hợp");
-            comboBox2.Items.Add("Báo cáo danh sách bệnh khám");
-            comboBox2.Items.Add("Báo cáo doanh thu chi tiết từng dịch vụ");
-
+            this.role = role;
         }
 
         private void DisplayPage(int page)
@@ -72,35 +66,8 @@ namespace GUI
             get { return (int)Math.Ceiling((double)data.Rows.Count / itemsPerPage); }
         }
 
-        private BigInteger getTongTienThuoc()
-        {
-            int TongSoLuong = 0;
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                if (row.Cells["TongTienThuoc"].Value != null)
-                {
-                    TongSoLuong += (int.Parse(row.Cells["TongTienThuoc"].Value.ToString()));
-                }
-            }
-            return TongSoLuong;
-        }
-
-        private BigInteger getTongTienDichVu()
-        {
-            int TongSoLuong = 0;
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                if (row.Cells["TongTienDIchVu"].Value != null)
-                {
-                    TongSoLuong += (int.Parse(row.Cells["TongTienDichVu"].Value.ToString()));
-                }
-            }
-            return TongSoLuong;
-        }
-
         private void Form_Load(object sender, EventArgs e)
         {
-            loadComboBox();
             DateTime nowDate = DateTime.Now;
             DataTable dt = new DataTable();
             dt.Columns.Add("NgayLap", typeof(string));
@@ -111,39 +78,50 @@ namespace GUI
             gcd = new BUS_GiayChiDinh("", "", "", "", "", "", "Active", DateTime.Now, DateTime.Now, 0);
             DataTable dtt = toa.selectNgayLap();
 
-            foreach (DataRow row in dtt.Rows)
+            if(dtt.Rows.Count > 0)
             {
-                DataGridViewRow newRow = new DataGridViewRow();
-
-                string day = row["Day"].ToString().Trim();
-                string month = row["Month"].ToString().Trim();
-                string year = row["Year"].ToString().Trim();
-                string date = day + "-" + month + "-" + year;
-                string totalThuoc = "0";
-                string totalDV = "0";
-
-                DataTable dtThuoc = toa.selectTongTienThuoc(int.Parse(day), int.Parse(month), int.Parse(year));
-                DataTable dtDV = gcd.selectTongTienDV(int.Parse(day), int.Parse(month), int.Parse(year));
-                if (dtThuoc.Rows.Count > 0)
+                foreach (DataRow row in dtt.Rows)
                 {
-                    totalThuoc = dtThuoc.Rows[0]["Total"].ToString().Trim();
-                }
-                if (dtDV.Rows.Count > 0)
-                {
-                    totalDV = dtDV.Rows[0]["Total"].ToString().Trim();
-                }
+                    DataGridViewRow newRow = new DataGridViewRow();
 
-                dt.Rows.Add(date, totalThuoc, totalDV);
+                    string day = row["Day"].ToString().Trim();
+                    string month = row["Month"].ToString().Trim();
+                    string year = row["Year"].ToString().Trim();
+                    string date = day + "-" + month + "-" + year;
+                    string totalThuoc = "0";
+                    string totalDV = "0";
 
+                    DataTable dtThuoc = toa.selectTongTienThuoc(int.Parse(day), int.Parse(month), int.Parse(year));
+                    DataTable dtDV = gcd.selectTongTienDV(int.Parse(day), int.Parse(month), int.Parse(year));
+                    if (dtThuoc.Rows.Count > 0)
+                    {
+                        totalThuoc = dtThuoc.Rows[0]["Total"].ToString().Trim();
+                    }
+                    if (dtDV.Rows.Count > 0)
+                    {
+                        totalDV = dtDV.Rows[0]["Total"].ToString().Trim();
+                    }
+
+                    dt.Rows.Add(date, totalThuoc, totalDV);
+
+                }
+                data = dt;
+                DisplayPage(currentPage);
+                label1.Text = currentPage.ToString() + "/" + TotalPages.ToString();
+
+                BigInteger totalAll = gcd.getTongTienDichVu(dataGridView1) + toa.getTongTienThuoc(dataGridView1);
+                textBox1.Text = totalAll.ToString();
+                textBox2.Text = toa.getTongTienThuoc(dataGridView1).ToString();
+                textBox3.Text = gcd.getTongTienDichVu(dataGridView1).ToString();
             }
-            data = dt;
-            DisplayPage(currentPage);
-            label1.Text = currentPage.ToString() + "/" + TotalPages.ToString();
-
-            BigInteger totalAll = getTongTienDichVu() + getTongTienThuoc();
-            textBox1.Text = totalAll.ToString();
-            textBox2.Text = getTongTienThuoc().ToString();
-            textBox3.Text = getTongTienDichVu().ToString();
+            else
+            {
+                MessageBox.Show("Chưa có dữ liệu nào !");
+                button1.Enabled = false;
+                label1.Text = "0/0";
+                button8.Enabled = false;
+                button9.Enabled = false;
+            }
         }
 
         private void button8_Click(object sender, EventArgs e)
@@ -166,14 +144,74 @@ namespace GUI
             }
         }
 
-        private void comboBox2_SelectedValueChanged(object sender, EventArgs e)
+        private void textBox1_TextClick(object sender, EventArgs e)
         {
-            string value = comboBox2.Text;
+            textBox1.Text = "";
+        }
 
-            if(value == "Báo cáo tổng hợp")
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (dateTimePicker1.Value.Date <= dateTimePicker2.Value.Date)
             {
-                MessageBox.Show("ok");
+                DateTime nowDate = DateTime.Now;
+                DataTable dt = new DataTable();
+                dt.Columns.Add("NgayLap", typeof(string));
+                dt.Columns.Add("TongTienThuoc", typeof(string));
+                dt.Columns.Add("TongTienDichVu", typeof(string));
+
+                toa = new BUS_Toa("", "", "", "", "", "", "Active", 0, DateTime.Now, DateTime.Now, 0);
+                gcd = new BUS_GiayChiDinh("", "", "", "", "", "", "Active", DateTime.Now, DateTime.Now, 0);
+                DataTable dtt = toa.selectFilterNgayLap(dateTimePicker1.Value, dateTimePicker2.Value);
+
+                if(dtt.Rows.Count > 0)
+                {
+                    foreach (DataRow row in dtt.Rows)
+                    {
+                        DataGridViewRow newRow = new DataGridViewRow();
+
+                        string day = row["Day"].ToString().Trim();
+                        string month = row["Month"].ToString().Trim();
+                        string year = row["Year"].ToString().Trim();
+                        string date = day + "-" + month + "-" + year;
+                        string totalThuoc = "0";
+                        string totalDV = "0";
+
+                        DataTable dtThuoc = toa.selectTongTienThuoc(int.Parse(day), int.Parse(month), int.Parse(year));
+                        DataTable dtDV = gcd.selectTongTienDV(int.Parse(day), int.Parse(month), int.Parse(year));
+                        if (dtThuoc.Rows.Count > 0)
+                        {
+                            totalThuoc = dtThuoc.Rows[0]["Total"].ToString().Trim();
+                        }
+                        if (dtDV.Rows.Count > 0)
+                        {
+                            totalDV = dtDV.Rows[0]["Total"].ToString().Trim();
+                        }
+
+                        dt.Rows.Add(date, totalThuoc, totalDV);
+
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Không có dữ liệu");
+                }
+
+                data = dt;
+                DisplayPage(currentPage);
+                label1.Text = currentPage.ToString() + "/" + TotalPages.ToString();
+
+                BigInteger totalAll = gcd.getTongTienDichVu(dataGridView1) + toa.getTongTienThuoc(dataGridView1);
+                textBox1.Text = totalAll.ToString();
+                textBox2.Text = toa.getTongTienThuoc(dataGridView1).ToString();
+                textBox3.Text = gcd.getTongTienDichVu(dataGridView1).ToString();
+
+            }
+            else
+            {
+                MessageBox.Show("Thời gian đã chọn không hợp lệ !");
+                return;
             }
         }
+
     }
 }

@@ -73,7 +73,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label1.Location = new System.Drawing.Point(226, 17);
+            this.label1.Location = new System.Drawing.Point(244, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(206, 38);
             this.label1.TabIndex = 0;
@@ -102,6 +102,8 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(140, 22);
             this.textBox2.TabIndex = 4;
+            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            this.textBox2.Leave += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // label3
             // 
@@ -119,6 +121,8 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(140, 22);
             this.textBox3.TabIndex = 6;
+            this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            this.textBox3.Leave += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // label4
             // 
@@ -126,9 +130,9 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(347, 99);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(73, 22);
+            this.label4.Size = new System.Drawing.Size(130, 22);
             this.label4.TabIndex = 5;
-            this.label4.Text = "CMND :";
+            this.label4.Text = "CMND/CCCD :";
             // 
             // label5
             // 
@@ -142,6 +146,8 @@
             // 
             // dateTimePicker1
             // 
+            this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker1.Location = new System.Drawing.Point(351, 223);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(308, 22);
@@ -155,7 +161,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(64, 22);
             this.label6.TabIndex = 10;
-            this.label6.Text = "Email ;";
+            this.label6.Text = "Email :";
             // 
             // textBox5
             // 
@@ -197,6 +203,7 @@
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(305, 22);
             this.textBox7.TabIndex = 16;
+            this.textBox7.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // label9
             // 
@@ -282,7 +289,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(198, 587);
+            this.button1.Location = new System.Drawing.Point(181, 577);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(138, 57);
             this.button1.TabIndex = 25;
@@ -296,7 +303,7 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(342, 587);
+            this.button2.Location = new System.Drawing.Point(354, 577);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(118, 57);
             this.button2.TabIndex = 26;
@@ -348,8 +355,10 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel1);
+            this.MaximizeBox = false;
             this.Name = "AddDoctor";
-            this.Text = "AddDoctor";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Thêm bác sĩ ";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BUS;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,16 @@ namespace GUI
 {
     public partial class AdminInterface : Form
     {
-        public AdminInterface()
+        string role,ma;
+        BUS_NhanVien nv;
+        public AdminInterface(string role, string ma)
         {
             InitializeComponent();
+            this.Size = new Size(1080, 460);
+            this.MaximumSize = new Size(1080, 460);
+            this.MinimumSize = new Size(1080, 460);
+            this.role = role;
+            this.ma = ma;
         }
 
         public Form currentForm;
@@ -36,6 +44,11 @@ namespace GUI
             childForm.Show();
         }
 
+        public void changeLabel ()
+        {
+            label9.Text = "Quản lý toa";
+        }
+
         private void pictureBox2_Click(object sender, EventArgs e)
         {
 
@@ -48,7 +61,9 @@ namespace GUI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            openChildForm(new ChooseEmployee(this));
+            label2.Visible = false;
+            label3.Visible = false;
+            openChildForm(new DoctorManagement(this, role));
             label9.Text = button1.Text;
         }
 
@@ -59,33 +74,95 @@ namespace GUI
 
         private void button2_Click(object sender, EventArgs e)
         {
-            openChildForm(new ServiceManagement(this));
+            label2.Visible = false;
+            label3.Visible = false;
+            openChildForm(new ServiceManagement(this,role));
             label9.Text = button2.Text;
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            openChildForm(new PatientManagement(this));
+            label2.Visible = false;
+            label3.Visible = false;
+            openChildForm(new PatientManagement(this, role));
             label9.Text = button3.Text;
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            openChildForm(new MedicineManagement(this));
+            label2.Visible = false;
+            label3.Visible = false;
+            openChildForm(new MedicineManagement(this,role));
             label9.Text = button6.Text;
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            openChildForm(new PrescriptionManagement(this));
+            label2.Visible = false;
+            label3.Visible = false;
+            openChildForm(new PrescriptionManagement(this, role));
             label9.Text = button4.Text;
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            openChildForm(new ReportManagement(this));
-            label9.Text = button7.Text;
+            label2.Visible = false;
+            label3.Visible = false;
+            openChildForm(new ReportManagement(this,role));
+            label9.Text = "";
 
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            label2.Visible = false;
+            label3.Visible = false;
+            ForgotPasswordForm form = new ForgotPasswordForm(role,ma);
+            form.Show();
+            this.Hide();     
+        }
+
+        private void AdminInterface_Load(object sender, EventArgs e)
+        {
+            nv = new BUS_NhanVien("", "", "", "", "", "", "", "", DateTime.Now, 0);
+            DataTable dt = nv.selectDataByID(ma);
+            string name = dt.Rows[0]["Ten"].ToString();
+
+            label1.Text = name;
+
+            if (role == "BacSi")
+            {
+                button1.Visible = false;
+                button2.Visible = false;
+                button6.Visible = false;
+                button7.Visible = false;
+                button3.Location = new System.Drawing.Point(0, 59);
+                button4.Location = new System.Drawing.Point(0, 99);
+                button5.Location = new System.Drawing.Point(0, 139);
+                button8.Location = new System.Drawing.Point(0, 179);
+                button9.Location = new System.Drawing.Point(0, 219);
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            label2.Visible = false;
+            label3.Visible = false;
+            ViewPersonalInformation form = new ViewPersonalInformation(role,ma);
+            form.Show();
+            this.Hide();
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn đăng xuất ?", "Xác nhận đăng xuất", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                LoginForm form = new LoginForm();
+                form.Show();
+                this.Hide();
+            }
+      
         }
     }
 }

@@ -113,9 +113,9 @@ namespace GUI
             this.label26.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label26.Location = new System.Drawing.Point(21, 25);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(152, 51);
+            this.label26.Size = new System.Drawing.Size(344, 51);
             this.label26.TabIndex = 1;
-            this.label26.Text = "Kê toa";
+            this.label26.Text = "Chỉ định dịch vụ";
             // 
             // pictureBox1
             // 
@@ -493,6 +493,7 @@ namespace GUI
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(0, 21);
@@ -674,10 +675,11 @@ namespace GUI
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1240, 1000);
             this.Name = "ReferralForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "Prescription";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Giấy chỉ định";
             this.Load += new System.EventHandler(this.FormLoad);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

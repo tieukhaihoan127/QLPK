@@ -42,6 +42,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label18 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
@@ -61,7 +62,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.label18 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -82,11 +82,11 @@
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.ForeColor = System.Drawing.Color.Snow;
-            this.label17.Location = new System.Drawing.Point(248, 19);
+            this.label17.Location = new System.Drawing.Point(173, 19);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(397, 46);
+            this.label17.Size = new System.Drawing.Size(571, 46);
             this.label17.TabIndex = 0;
-            this.label17.Text = "Cập nhật bệnh nhân";
+            this.label17.Text = "Cập nhật thông tin bệnh nhân";
             // 
             // groupBox1
             // 
@@ -122,6 +122,7 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(398, 22);
             this.textBox3.TabIndex = 7;
+            this.textBox3.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // label4
             // 
@@ -164,6 +165,8 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(176, 22);
             this.textBox2.TabIndex = 2;
+            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            this.textBox2.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // textBox1
             // 
@@ -171,6 +174,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(176, 22);
             this.textBox1.TabIndex = 1;
+            this.textBox1.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // label2
             // 
@@ -217,6 +221,15 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Chỉ số sức khỏe";
             // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(321, 72);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(19, 16);
+            this.label18.TabIndex = 17;
+            this.label18.Text = "%";
+            // 
             // label13
             // 
             this.label13.AutoSize = true;
@@ -232,6 +245,8 @@
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(102, 22);
             this.textBox8.TabIndex = 15;
+            this.textBox8.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            this.textBox8.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // label14
             // 
@@ -257,6 +272,8 @@
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(102, 22);
             this.textBox9.TabIndex = 12;
+            this.textBox9.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            this.textBox9.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // label16
             // 
@@ -282,6 +299,8 @@
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(102, 22);
             this.textBox7.TabIndex = 9;
+            this.textBox7.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            this.textBox7.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // label11
             // 
@@ -307,6 +326,8 @@
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(102, 22);
             this.textBox6.TabIndex = 6;
+            this.textBox6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            this.textBox6.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // label9
             // 
@@ -323,6 +344,8 @@
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(102, 22);
             this.textBox5.TabIndex = 4;
+            this.textBox5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            this.textBox5.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // label8
             // 
@@ -339,6 +362,8 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(102, 22);
             this.textBox4.TabIndex = 2;
+            this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            this.textBox4.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // label7
             // 
@@ -364,7 +389,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(307, 416);
+            this.button1.Location = new System.Drawing.Point(308, 416);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(138, 57);
             this.button1.TabIndex = 26;
@@ -386,15 +411,6 @@
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(321, 72);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(19, 16);
-            this.label18.TabIndex = 17;
-            this.label18.Text = "%";
-            // 
             // UpdatePatient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -406,8 +422,10 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
+            this.MaximizeBox = false;
             this.Name = "UpdatePatient";
-            this.Text = "AddPatient";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Cập nhật thông tin bệnh nhân";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);

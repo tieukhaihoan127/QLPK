@@ -270,12 +270,6 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChooseEmployee.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ChooseEmployee.Designer.cs">
-      <DependentUpon>ChooseEmployee.cs</DependentUpon>
-    </Compile>
     <Compile Include="DoctorManagement.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -365,12 +359,6 @@
     <Compile Include="UpdatePatient.Designer.cs">
       <DependentUpon>UpdatePatient.cs</DependentUpon>
     </Compile>
-    <Compile Include="UpdatePrescription.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UpdatePrescription.Designer.cs">
-      <DependentUpon>UpdatePrescription.cs</DependentUpon>
-    </Compile>
     <Compile Include="UpdateService.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -395,6 +383,12 @@
     <Compile Include="ViewPatient.Designer.cs">
       <DependentUpon>ViewPatient.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewPersonalInformation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewPersonalInformation.Designer.cs">
+      <DependentUpon>ViewPersonalInformation.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewPrescription.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -406,12 +400,6 @@
     </Compile>
     <Compile Include="ViewService.Designer.cs">
       <DependentUpon>ViewService.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Welcome.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Welcome.Designer.cs">
-      <DependentUpon>Welcome.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AddDoctor.resx">
       <DependentUpon>AddDoctor.cs</DependentUpon>
@@ -433,9 +421,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ChooseEmployee.resx">
-      <DependentUpon>ChooseEmployee.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DoctorManagement.resx">
       <DependentUpon>DoctorManagement.cs</DependentUpon>
@@ -488,9 +473,6 @@
     <EmbeddedResource Include="UpdatePatient.resx">
       <DependentUpon>UpdatePatient.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UpdatePrescription.resx">
-      <DependentUpon>UpdatePrescription.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UpdateService.resx">
       <DependentUpon>UpdateService.cs</DependentUpon>
     </EmbeddedResource>
@@ -503,14 +485,14 @@
     <EmbeddedResource Include="ViewPatient.resx">
       <DependentUpon>ViewPatient.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ViewPersonalInformation.resx">
+      <DependentUpon>ViewPersonalInformation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ViewPrescription.resx">
       <DependentUpon>ViewPrescription.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewService.resx">
       <DependentUpon>ViewService.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Welcome.resx">
-      <DependentUpon>Welcome.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="dsChiTietDichVu.xsc">
       <DependentUpon>dsChiTietDichVu.xsd</DependentUpon>
@@ -588,6 +570,9 @@
   <ItemGroup>
     <None Include="Resources\blurbg - Copy.jpg" />
     <None Include="Resources\userlogo-removebg-preview.png" />
+    <None Include="Resources\reloadicon.jpg" />
+    <None Include="Resources\reloadicon2.png" />
+    <None Include="Resources\pngwing.com.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

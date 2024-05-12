@@ -155,13 +155,11 @@
     <Compile Include="Connection.cs" />
     <Compile Include="DAL_BacSi.cs" />
     <Compile Include="DAL_BenhNhan.cs" />
-    <Compile Include="DAL_ChiTietToaThuoc.cs" />
     <Compile Include="DAL_DichVu.cs" />
     <Compile Include="DAL_GiayChiDinh.cs" />
     <Compile Include="DAL_NhanVien.cs" />
     <Compile Include="DAL_TaiKhoan.cs" />
     <Compile Include="DAL_Thuoc.cs" />
-    <Compile Include="DAL_TKAdmin.cs" />
     <Compile Include="DAL_Toa.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">

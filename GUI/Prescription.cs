@@ -10,6 +10,7 @@ using BUS;
 using System.Windows.Forms;
 using System.Data.Common;
 using System.Numerics;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
 
 namespace GUI
 {
@@ -17,21 +18,26 @@ namespace GUI
     {
         BUS_Thuoc t;
         BUS_Toa toa;
-        BUS_DichVu dv;
         BUS_BenhNhan bn;
         AdminInterface mainForm;
         private string id;
+        private string title;
         private int quantities;
+        string role = "";
         bool check = false;
+        bool checkName = false;
+        private bool comboBoxEventEnabled = true;
         DataGridViewComboBoxColumn comboBoxColumn1 = new DataGridViewComboBoxColumn();
-        DataGridViewComboBoxColumn comboBoxColumn2 = new DataGridViewComboBoxColumn();
-        public Prescription(string id, AdminInterface mainForm)
+        public Prescription(string id, AdminInterface mainForm, string role)
         {
             InitializeComponent();
-            this.Height = 900;
+            this.Size = new System.Drawing.Size(930, 750);
+            this.MaximumSize = new System.Drawing.Size(930, 750);
+            this.MinimumSize = new System.Drawing.Size(930, 750);
             dataGridView1.EditingControlShowing += DataGridView1_EditingControlShowing;
             this.id = id;
             this.mainForm = mainForm;
+            this.role = role;
         }
 
         private void loadThuoc()
@@ -158,33 +164,59 @@ namespace GUI
             dataGridView1.Rows.Add();
         }
 
-        private void cellContentClick(object sender,EventArgs e)
+        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            dataGridView1.Rows.Add();
-        }
+            if (e.RowIndex == dataGridView1.Rows.Count - 1 && e.ColumnIndex == dataGridView1.Columns.Count - 1)
+            {
+                dataGridView1.Rows.Add();
+            }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            dataGridView1.Rows.Add();
-            
         }
 
         private void DataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             if (e.Control is ComboBox comboBox)
             {
+                comboBox.SelectedIndexChanged -= ComboBox_SelectedThuocIndexChanged;
                 comboBox.SelectedIndexChanged += ComboBox_SelectedThuocIndexChanged;
             }
         }
 
         private void ComboBox_SelectedThuocIndexChanged(object sender, EventArgs e)
         {
+
             ComboBox comboBox = sender as ComboBox;
             if (comboBox != null)
             {
+                toa = new BUS_Toa("", "", "", "", "", "", "", 0, DateTime.Now, DateTime.Now, 0);
                 string selectedValue = comboBox.SelectedItem.ToString();
                 DataTable thuoc = t.getThuocInfoByName(selectedValue);
                 int currentRowIndex = dataGridView1.CurrentCell.RowIndex;
+                title = selectedValue;
+                if (currentRowIndex > 0)
+                {
+                    int indexValue = toa.getIndexValueExistInColumn(selectedValue, dataGridView1);
+                    if (indexValue != -1)
+                    {
+                        check = true;
+                        quantities = int.Parse(dataGridView1.Rows[indexValue].Cells["SoLuong"].Value.ToString());
+                        quantities++;
+                        dataGridView1.Rows[indexValue].Cells["SoLuong"].Value = quantities;
+                        textBox11.Text = toa.getTongSoLuongThuoc(dataGridView1).ToString();
+                        if (dataGridView1.Rows[indexValue].Cells["GiaBan"].Value != null && check == true)
+                        {
+                            BigInteger total = BigInteger.Parse(dataGridView1.Rows[indexValue].Cells["GiaBan"].Value.ToString());
+                            BigInteger originPrice = BigInteger.Parse(thuoc.Rows[0]["GiaBan"].ToString());
+                            total = originPrice * quantities;
+                            dataGridView1.Rows[indexValue].Cells["GiaBan"].Value = total;
+                            textBox12.Text = toa.getTongTien(dataGridView1).ToString();
+                            check = false;
+                        }
+                        MessageBox.Show("Cập nhật số lượng của " + selectedValue);
+                        dataGridView1.Rows.RemoveAt(currentRowIndex);
+                        return;
+                    }
+                }
 
                 if (dataGridView1.Rows[currentRowIndex].Cells[1].Value == null)
                 {
@@ -205,39 +237,15 @@ namespace GUI
                 {
                     dataGridView1.Rows[currentRowIndex].Cells[4].Value = thuoc.Rows[0]["GiaBan"].ToString().Trim();
                 }
-
+                comboBoxEventEnabled = true;
             }
-        }
-
-        private int getTongSoLuongThuoc()
-        {
-            int TongSoLuong = 0;
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                if (row.Cells["SoLuong"].Value != null)
-                {
-                    TongSoLuong += (int.Parse(row.Cells["SoLuong"].Value.ToString()));
-                }
-            }
-            return TongSoLuong;
-        }
-
-        private int getTongTien()
-        {
-            int TongTien = 0;
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                if (row.Cells["GiaBan"].Value != null)
-                {
-                    TongTien += (int.Parse(row.Cells["GiaBan"].Value.ToString()));
-                }
-            }
-            return TongTien;
         }
 
         private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
+            toa = new BUS_Toa("", "", "", "", "", "", "", 0, DateTime.Now, DateTime.Now, 0);
             int currentRowIndex = dataGridView1.CurrentCell.RowIndex;
+
             if (e.RowIndex >= 0 && dataGridView1.Columns[e.ColumnIndex].Name == "SoLuong")
             {
                 DataGridViewCell cell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex];
@@ -253,13 +261,15 @@ namespace GUI
                     }
                     else
                     {
-                        textBox11.Text = getTongSoLuongThuoc().ToString();
+                        DataTable thuoc = t.getThuocInfoByName(title);
+                        textBox11.Text = toa.getTongSoLuongThuoc(dataGridView1).ToString();
                         if(dataGridView1.Rows[e.RowIndex].Cells["GiaBan"].Value != null && check == true)
                         {
                             BigInteger total = BigInteger.Parse(dataGridView1.Rows[e.RowIndex].Cells["GiaBan"].Value.ToString());
-                            total = total * quantities;
+                            BigInteger originPrice = BigInteger.Parse(thuoc.Rows[0]["GiaBan"].ToString());
+                            total = originPrice * quantities;
                             dataGridView1.Rows[e.RowIndex].Cells["GiaBan"].Value = total;
-                            textBox12.Text = getTongTien().ToString();
+                            textBox12.Text = toa.getTongTien(dataGridView1).ToString();
                             check = false;
                         }
                     }
@@ -271,7 +281,7 @@ namespace GUI
             }
             else if (e.RowIndex >= 0 && dataGridView1.Columns[e.ColumnIndex].Name == "GiaBan")
             {
-                textBox12.Text = getTongTien().ToString();
+                textBox12.Text = toa.getTongTien(dataGridView1).ToString();
             }
 
         }
@@ -290,55 +300,81 @@ namespace GUI
 
         private void button2_Click(object sender, EventArgs e)
         {
-            ViewPatient form = new ViewPatient(mainForm);
+            ViewPatient form = new ViewPatient(mainForm,role);
             form.updateCurrent(id);
             form.Show();
             this.Hide();
         }
 
+        public bool IsDataGridViewEmpty(DataGridView dataGridView)
+        {
+            if (dataGridView == null || dataGridView.Rows.Count == 0)
+                return true;
+
+            foreach (DataGridViewRow row in dataGridView.Rows)
+            {
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    if (cell.Value != null && !string.IsNullOrEmpty(cell.Value.ToString()))
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            string bn = textBox1.Text;
-            string tiensu = comboBox1.Text;
-            string chandoan = comboBox2.Text;
-            string trieuchung = richTextBox1.Text;
-            string slt = textBox11.Text;
-            string loidan = richTextBox2.Text;
-            DateTime tk = dateTimePicker3.Value;
-            BigInteger tongtien = getTongTien();
-
-            if(radioButton1.Checked == true)
+            if(IsDataGridViewEmpty(dataGridView1) == false)
             {
-                toa = new BUS_Toa("", bn, tiensu, chandoan, trieuchung, loidan, "Active", int.Parse(slt), DateTime.Now, tk,tongtien);
+                BUS_Toa tt = new BUS_Toa("", "", "", "", "", "", "", 0, DateTime.Now, DateTime.Now, 0);
+                string bn = textBox1.Text;
+                string tiensu = comboBox1.Text;
+                string chandoan = comboBox2.Text;
+                string trieuchung = richTextBox1.Text;
+                string slt = textBox11.Text;
+                string loidan = richTextBox2.Text;
+                DateTime tk = dateTimePicker3.Value;
+                BigInteger tongtien = tt.getTongTien(dataGridView1);
+
+                if (radioButton1.Checked == true)
+                {
+                    toa = new BUS_Toa("", bn, tiensu, chandoan, trieuchung, loidan, "Active", int.Parse(slt), DateTime.Now, tk, tongtien);
+                }
+                else
+                {
+                    toa = new BUS_Toa("", bn, tiensu, chandoan, trieuchung, loidan, "Active", int.Parse(slt), DateTime.Now, DateTime.Now, tongtien);
+                }
+
+                toa.addQuery();
+
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (!row.IsNewRow)
+                    {
+                        string name = row.Cells[0].Value.ToString();
+                        string dvt = row.Cells[1].Value.ToString();
+                        int sl = int.Parse(row.Cells[2].Value.ToString());
+                        t = new BUS_Thuoc("", "", "", 0, 0, "", "", DateTime.Now, "", "");
+                        DataTable dt1 = t.getThuocInfoByName(name);
+                        string mat = dt1.Rows[0]["MaThuoc"].ToString().Trim();
+                        BigInteger gia = BigInteger.Parse(row.Cells[4].Value.ToString());
+                        string cachdung = row.Cells[3].Value.ToString();
+                        toa.addDetailMedicine(mat, name, dvt, sl, gia, cachdung);
+                    }
+                }
+
+                string maToa = toa.getCurrentMaToa();
+
+                PrescriptionPrinting form = new PrescriptionPrinting(id, maToa);
+                form.ShowDialog(this);
             }
             else
             {
-                toa = new BUS_Toa("", bn, tiensu, chandoan, trieuchung, loidan, "Active", int.Parse(slt), DateTime.Now, DateTime.Now,tongtien);
+                MessageBox.Show("Bạn chưa chọn thuốc để kê toa !");
+                return;
             }
-
-            toa.addQuery();
-
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                if (!row.IsNewRow)
-                {
-                    string name = row.Cells[0].Value.ToString();
-                    string dvt = row.Cells[1].Value.ToString();
-                    int sl = int.Parse(row.Cells[2].Value.ToString());
-                    t = new BUS_Thuoc("", "", "", 0, 0, "", "", DateTime.Now, "", "");
-                    DataTable dt1 = t.getThuocInfoByName(name);
-                    string mat = dt1.Rows[0]["MaThuoc"].ToString().Trim();
-                    BigInteger gia = BigInteger.Parse(row.Cells[4].Value.ToString());
-                    string cachdung = row.Cells[3].Value.ToString();
-                    toa.addDetailMedicine(mat, name, dvt,sl, gia,cachdung);
-                }
-            }
-
-            string maToa = toa.getCurrentMaToa();
-
-            PrescriptionPrinting form = new PrescriptionPrinting(id,maToa);
-            this.Hide();
-            form.Show();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -348,8 +384,16 @@ namespace GUI
 
         private void button4_Click(object sender, EventArgs e)
         {
-            int currentRowIndex = dataGridView1.CurrentCell.RowIndex;
-            dataGridView1.Rows.RemoveAt(currentRowIndex);
+            if(dataGridView1.Rows.Count != 0)
+            {
+                dataGridView1.Rows.RemoveAt(dataGridView1.CurrentCell.RowIndex);
+                textBox12.Text = toa.getTongTien(dataGridView1).ToString();
+            }
+            else
+            {
+                MessageBox.Show("Không còn hàng nào để xóa !");
+                return;
+            }
         }
     }
 }

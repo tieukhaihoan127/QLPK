@@ -18,8 +18,6 @@ C:\Users\Hoan\source\repos\QLPK\GUI\obj\Debug\GUI.AdminInterface.resources
 C:\Users\Hoan\source\repos\QLPK\GUI\obj\Debug\GUI.DoctorManagement.resources
 C:\Users\Hoan\source\repos\QLPK\GUI\obj\Debug\GUI.AddDoctor.resources
 C:\Users\Hoan\source\repos\QLPK\GUI\obj\Debug\GUI.UpdateDoctor.resources
-C:\Users\Hoan\source\repos\QLPK\GUI\obj\Debug\GUI.Welcome.resources
-C:\Users\Hoan\source\repos\QLPK\GUI\obj\Debug\GUI.ChooseEmployee.resources
 C:\Users\Hoan\source\repos\QLPK\GUI\obj\Debug\GUI.PatientManagement.resources
 C:\Users\Hoan\source\repos\QLPK\GUI\obj\Debug\GUI.AddPatient.resources
 C:\Users\Hoan\source\repos\QLPK\GUI\obj\Debug\GUI.UpdatePatient.resources
@@ -116,7 +114,6 @@ C:\Users\Hoan\source\repos\QLPK\GUI\obj\Debug\GUI.ViewService.resources
 C:\Users\Hoan\source\repos\QLPK\GUI\obj\Debug\GUI.Prescription.resources
 C:\Users\Hoan\source\repos\QLPK\GUI\obj\Debug\GUI.PrescriptionManagement.resources
 C:\Users\Hoan\source\repos\QLPK\GUI\obj\Debug\GUI.ViewPrescription.resources
-C:\Users\Hoan\source\repos\QLPK\GUI\obj\Debug\GUI.UpdatePrescription.resources
 C:\Users\Hoan\source\repos\QLPK\GUI\obj\Debug\GUI.PrescriptionPrinting.resources
 C:\Users\Hoan\source\repos\QLPK\GUI\bin\Debug\SqlServerTypes\x64\msvcr120.dll
 C:\Users\Hoan\source\repos\QLPK\GUI\bin\Debug\SqlServerTypes\x64\SqlServerSpatial140.dll
@@ -195,3 +192,4 @@ C:\Users\Hoan\source\repos\QLPK\GUI\bin\Debug\Guna.Charts.WinForms.dll
 C:\Users\Hoan\source\repos\QLPK\GUI\bin\Debug\Guna.UI2.dll
 C:\Users\Hoan\source\repos\QLPK\GUI\bin\Debug\Guna.Charts.WinForms.xml
 C:\Users\Hoan\source\repos\QLPK\GUI\obj\Debug\GUI.ViewDoctor.resources
+C:\Users\Hoan\source\repos\QLPK\GUI\obj\Debug\GUI.ViewPersonalInformation.resources

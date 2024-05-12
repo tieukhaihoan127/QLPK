@@ -31,9 +31,27 @@ namespace DAL
             return Connection.selectQuery(query);
         }
 
+        public DataTable selectDataByID(string id)
+        {
+            string query = "SELECT Toa.MaToa, BenhNhan.Ten, Toa.TrieuChung, Toa.ChanDoan, Toa.TongTien ,Toa.NgayLap FROM Toa,BenhNhan WHERE Toa.TrangThai = 'Active' AND Toa.MaBN = BenhNhan.MaBN AND Toa.MaBN ='" + id + "'";
+            return Connection.selectQuery(query);
+        }
+
         public DataTable selectMaThuoc(string MaToa)
         {
             string query = "SELECT * FROM ChiTietToaThuoc WHERE MaToa = '" + MaToa + "'";
+            return Connection.selectQuery(query);
+        }
+
+        public DataTable selectSearch(string text)
+        {
+            string query = "SELECT Toa.MaToa, BenhNhan.Ten, Toa.TrieuChung, Toa.ChanDoan, Toa.TongTien ,Toa.NgayLap FROM Toa,BenhNhan WHERE Toa.TrangThai = 'Active' AND Toa.MaBN = BenhNhan.MaBN AND (Toa.MaToa LIKE '%" + text + "%' OR BenhNhan.Ten LIKE N'%" + text + "%')";
+            return Connection.selectQuery(query);
+        }
+
+        public DataTable selectFilterTime(DateTime first, DateTime second)
+        {
+            string query = "SELECT Toa.MaToa, BenhNhan.Ten, Toa.TrieuChung, Toa.ChanDoan, Toa.TongTien ,Toa.NgayLap FROM Toa,BenhNhan WHERE Toa.TrangThai = 'Active' AND Toa.MaBN = BenhNhan.MaBN AND (Toa.NgayLap >= '" + first + "' AND Toa.NgayLap < '" + second + "')";
             return Connection.selectQuery(query);
         }
 
@@ -55,6 +73,18 @@ namespace DAL
             return Connection.selectQuery(query);
         }
 
+        public DataTable selectFilterNgayLap(DateTime first, DateTime second)
+        {
+            string query = "SELECT DISTINCT DAY(NgayLap) as Day,MONTH(NgayLap) as Month,YEAR(NgayLap) as Year FROM Toa WHERE Toa.NgayLap >= '" + first + "' AND Toa.NgayLap < '" + second + "' ORDER BY DAY(NgayLap) DESC, MONTH(NgayLap) DESC, YEAR(NgayLap) DESC";
+            return Connection.selectQuery(query);
+        }
+
+        public DataTable selectSearchNgayLap(DateTime first)
+        {
+            string query = "SELECT DISTINCT DAY(NgayLap) as Day,MONTH(NgayLap) as Month,YEAR(NgayLap) as Year FROM Toa WHERE Toa.NgayLap = '" + first + "' ORDER BY DAY(NgayLap) DESC, MONTH(NgayLap) DESC, YEAR(NgayLap) DESC";
+            return Connection.selectQuery(query);
+        }
+
         public DataTable selectTongTienThuoc(int day,int month,int year)
         {
             string query = "SELECT SUM(TongTien) as Total FROM Toa WHERE DAY(NgayLap) = " + day + "AND MONTH(NgayLap) = " + month + "AND YEAR(NgayLap) = " + year + "GROUP BY DAY(NgayLap),MONTH(NgayLap),YEAR(NgayLap)";
@@ -67,68 +97,14 @@ namespace DAL
             return Connection.selectQuery(query);
         }
 
-        public string getId()
-        {
-            DataTable tb = getPrescriptionDesc();
-            string id = "";
-            if (tb.Rows.Count > 0)
-            {
-                id = tb.Rows[0][0].ToString();
-                int stt = int.Parse(id.Substring(1,9)) + 1;
-                if (stt < 10)
-                {
-                    id = "T00000000" + stt.ToString();
-                }
-                else if (stt < 100)
-                {
-                    id = "T0000000" + stt.ToString();
-                }
-
-                else if (stt < 1000)
-                {
-                    id = "T000000" + stt.ToString();
-                }
-                else if (stt < 10000)
-                {
-                    id = "T00000" + stt.ToString();
-                }
-                else if (stt < 100000)
-                {
-                    id = "T0000" + stt.ToString();
-                }
-                else if (stt < 1000000)
-                {
-                    id = "T000" + stt.ToString();
-                }
-                else if (stt < 10000000)
-                {
-                    id = "T00" + stt.ToString();
-                }
-                else if (stt < 100000000)
-                {
-                    id = "T0" + stt.ToString();
-                }
-                else if (stt < 1000000000)
-                {
-                    id = "T" + stt.ToString();
-                }
-            }
-            else
-            {
-                id = "T000000001";
-            }
-            return id;
-        }
-
         public string getPrevId()
         {
             DataTable tb = getPrescriptionDesc();
             return tb.Rows[0][0].ToString();
         }
 
-        public void addQuery()
+        public void addQuery(string id)
         {
-            string id = getId();
             DateTime now = DateTime.Now;
             string query = "";
 
@@ -146,7 +122,6 @@ namespace DAL
         public void addDetailMedicine(string MaThuoc, string TenThuoc, string DVT, int SoLuong, BigInteger GiaBan, string CachDung)
         {
             string id = getPrevId().Trim();
-            MessageBox.Show(id);
             string query = "INSERT INTO ChiTietToaThuoc VALUES ('" + id + "','" + MaThuoc + "',N'" + TenThuoc + "',N'" + DVT + "'," + SoLuong + "," + GiaBan + ",N'" + CachDung + "')";
             Connection.actionQuery(query);
         }
@@ -159,39 +134,8 @@ namespace DAL
 
         }
 
-        public string getMaToaDelete(DataGridView dataGridView1)
+        public void updateQuery(string text)
         {
-            List<string> selectedValues = new List<string>();
-            string text = "";
-            foreach (DataGridViewRow selectedRow in dataGridView1.SelectedRows)
-            {
-
-                if (selectedRow.Cells["MaToa"].Value != null)
-                {
-                    selectedValues.Add(selectedRow.Cells["MaToa"].Value.ToString());
-                }
-            }
-            foreach (string value in selectedValues)
-            {
-                text += "'";
-                text += value.Trim();
-                text += "',";
-            }
-            if (text == "")
-            {
-                MessageBox.Show("Bạn chưa chọn nhân viên nào !");
-
-            }
-            else
-            {
-                text = text.Substring(0, text.Length - 1);
-            }
-            return text;
-        }
-
-        public void updateQuery(DataGridView dataGridView1)
-        {
-            string text = getMaToaDelete(dataGridView1);
             if (text == "")
             {
                 return;
@@ -204,9 +148,8 @@ namespace DAL
             }
         }
 
-        public void updateActiveQuery(DataGridView dataGridView1)
+        public void updateActiveQuery(string text)
         {
-            string text = getMaToaDelete(dataGridView1);
             if (text == "")
             {
                 return;

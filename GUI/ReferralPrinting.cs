@@ -63,7 +63,7 @@ namespace GUI
             string tk = "Không";
             if (taikham.Year != 1900)
             {
-                tk = "Ngày " + taikham.Day.ToString() + " tháng" + taikham.Month.ToString() + " năm" + taikham.Year.ToString();
+                tk = "Ngày " + taikham.Day.ToString() + " tháng " + taikham.Month.ToString() + " năm " + taikham.Year.ToString();
             }
 
             string now = "Ngày " + DateTime.Now.Day.ToString() + " tháng " + DateTime.Now.Month.ToString() + " năm " + DateTime.Now.Year.ToString();

@@ -17,19 +17,25 @@ namespace GUI
         BUS_NhanVien nv;
         BUS_BacSi bs;
         BUS_TaiKhoan acc;
+        string role = "";
         private static string id = "";
         private AdminInterface mainForm;
 
-        public ViewDoctor(AdminInterface form)
+        public ViewDoctor(AdminInterface form, string role)
         {
             InitializeComponent();
+            this.Size = new Size(533, 650);
+            this.MaximumSize = new Size(533, 650);
+            this.MinimumSize = new Size(533, 650);
             mainForm = form;
+            this.role = role;
         }
 
         public void SetDataGridView(string ID)
         {
             nv = new BUS_NhanVien("", "", "", "", "", "", "", "", DateTime.Now, 0);
             DataTable r = nv.selectNVByID(ID);
+            DataTable s = nv.selectStatusNV(ID);
             string ten = r.Rows[0]["Ten"].ToString();
             string sdt = r.Rows[0]["SDT"].ToString();
             string CMND = r.Rows[0]["CMND"].ToString();
@@ -42,7 +48,7 @@ namespace GUI
             string hocvan = r.Rows[0]["HocVan"].ToString();
             string KinhNghiem = r.Rows[0]["KinhNghiem"].ToString();
             string NgonNgu = r.Rows[0]["NgonNgu"].ToString();
-            string tk = r.Rows[0]["TenTK"].ToString();
+            string tk = s.Rows[0]["TrangThai"].ToString();
             string mk = r.Rows[0]["MatKhau"].ToString();
 
             textBox1.Text = ten.Trim();
@@ -61,14 +67,9 @@ namespace GUI
             textBox4.Text = mk.Trim();
         }
 
-        public void updateCurrent(string MaNV)
-        {
-            id = MaNV;
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
-            mainForm.openChildForm(new DoctorManagement(mainForm));
+            mainForm.openChildForm(new DoctorManagement(mainForm, role));
             this.Hide();
             mainForm.Show(); ;
         }

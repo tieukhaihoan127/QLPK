@@ -16,16 +16,21 @@ namespace GUI
     {
         AdminInterface mainForm;
         BUS_DichVu dv;
+        string role = "";
         private static string id = "";
-        public ViewService(AdminInterface form)
+        public ViewService(AdminInterface form, string role)
         {
             InitializeComponent();
+            this.Size = new Size(380, 420);
+            this.MaximumSize = new Size(380, 420);
+            this.MinimumSize = new Size(380, 420);
             mainForm = form;
+            this.role = role;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            mainForm.openChildForm(new ServiceManagement(mainForm));
+            mainForm.openChildForm(new ServiceManagement(mainForm, role));
             this.Hide();
             mainForm.Show();
         }

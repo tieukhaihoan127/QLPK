@@ -16,16 +16,21 @@ namespace GUI
     {
         AdminInterface mainForm;
         BUS_Thuoc t;
+        string role = "";
         private static string id = "";
-        public ViewMedicine(AdminInterface form)
+        public ViewMedicine(AdminInterface form, string role)
         {
             InitializeComponent();
+            this.Size = new Size(533, 620);
+            this.MaximumSize = new Size(533, 620);
+            this.MinimumSize = new Size(533, 620);
             mainForm = form;
+            this.role = role;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            mainForm.openChildForm(new MedicineManagement(mainForm));
+            mainForm.openChildForm(new MedicineManagement(mainForm, role));
             this.Hide();
             mainForm.Show();
         }

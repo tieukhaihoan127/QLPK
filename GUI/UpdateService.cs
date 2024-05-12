@@ -10,6 +10,7 @@ using BUS;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Numerics;
+using System.Web.UI.WebControls;
 
 namespace GUI
 {
@@ -18,11 +19,38 @@ namespace GUI
 
         BUS_DichVu dv;
         private static string id = "";
+        string role = "";
         AdminInterface mainForm;
-        public UpdateService(AdminInterface form)
+        public UpdateService(AdminInterface form, string role)
         {
             InitializeComponent();
+            this.Size = new Size(380, 380);
+            this.MaximumSize = new Size(380, 380);
+            this.MinimumSize = new Size(380, 380);
             mainForm = form;
+            this.role = role;
+        }
+
+        private void textBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBox1_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                MessageBox.Show("Vui lòng nhập dữ liệu vào ô Tên dịch vụ !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBox1.Focus();
+            }
+            if (string.IsNullOrWhiteSpace(textBox2.Text))
+            {
+                MessageBox.Show("Vui lòng nhập dữ liệu vào ô Giá !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBox2.Focus();
+            }
         }
 
         private void loadComboBox()
@@ -53,7 +81,7 @@ namespace GUI
 
         private void button2_Click(object sender, EventArgs e)
         {
-            mainForm.openChildForm(new ServiceManagement(mainForm));
+            mainForm.openChildForm(new ServiceManagement(mainForm, role));
             this.Hide();
             mainForm.Show();
         }
@@ -67,7 +95,7 @@ namespace GUI
 
             dv = new BUS_DichVu(id, ten, gia, donvi, DateTime.Now, "");
             dv.updateCurrentQuery();
-            mainForm.openChildForm(new ServiceManagement(mainForm));
+            mainForm.openChildForm(new ServiceManagement(mainForm, role));
             this.Hide();
             mainForm.Show();
         }
