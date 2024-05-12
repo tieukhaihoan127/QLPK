@@ -113,14 +113,15 @@ namespace GUI
             tk = new BUS_TaiKhoan("", "", "", ma, DateTime.Now);
             DataTable dt = tk.selectTKByID(ma);
             string currentPass = dt.Rows[0]["MatKhau"].ToString();
-            MessageBox.Show(currentPass);
             string mkOld = textBox1.Text;
-            MessageBox.Show(mkOld);
             string mkNew = textBox2.Text;
 
             if(mkOld != currentPass.Trim())
             {
                 MessageBox.Show("Mật khẩu của tài khoản không chính xác !");
+                textBox1.Text = "";
+                textBox2.Text = "";
+                textBox3.Text = "";
                 return;
             }
 
@@ -134,6 +135,9 @@ namespace GUI
             }
             else
             {
+                textBox1.Text = "";
+                textBox2.Text = "";
+                textBox3.Text = "";
                 MessageBox.Show("Mã OTP không hợp lệ !");
             }
         }

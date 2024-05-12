@@ -86,6 +86,7 @@ namespace GUI
                 label1.Text = "0/0";
                 button8.Enabled = false;
                 button9.Enabled = false;
+                button7.Enabled = false;
             }
         }
 

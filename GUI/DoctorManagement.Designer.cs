@@ -39,9 +39,11 @@ namespace GUI
             this.panel12 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.button1 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button12 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
@@ -50,8 +52,6 @@ namespace GUI
             this.button4 = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
             this.panel11.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -166,6 +166,17 @@ namespace GUI
             this.label2.TabIndex = 16;
             this.label2.Text = "Từ :";
             // 
+            // button3
+            // 
+            this.button3.BackgroundImage = global::GUI.Properties.Resources.search;
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button3.Location = new System.Drawing.Point(1072, 13);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(33, 25);
+            this.button3.TabIndex = 17;
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
@@ -198,6 +209,17 @@ namespace GUI
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // button7
+            // 
+            this.button7.BackgroundImage = global::GUI.Properties.Resources.pngwing1;
+            this.button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button7.Location = new System.Drawing.Point(17, 16);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(35, 24);
+            this.button7.TabIndex = 1;
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.button12);
@@ -223,7 +245,7 @@ namespace GUI
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(217, 30);
             this.button12.TabIndex = 12;
-            this.button12.Text = "Xem thông tin bác sĩ";
+            this.button12.Text = "Xem thông tin nhân viên";
             this.button12.UseVisualStyleBackColor = false;
             this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
@@ -300,28 +322,6 @@ namespace GUI
             this.textBox1.TabIndex = 3;
             this.textBox1.Text = "Nhập từ khóa :";
             this.textBox1.Click += new System.EventHandler(this.textBox1_TextClick);
-            // 
-            // button3
-            // 
-            this.button3.BackgroundImage = global::GUI.Properties.Resources.search;
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button3.Location = new System.Drawing.Point(1072, 13);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(33, 25);
-            this.button3.TabIndex = 17;
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button7
-            // 
-            this.button7.BackgroundImage = global::GUI.Properties.Resources.pngwing1;
-            this.button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button7.Location = new System.Drawing.Point(17, 16);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(35, 24);
-            this.button7.TabIndex = 1;
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // DoctorManagement
             // 

@@ -212,11 +212,11 @@ namespace GUI
             this.button12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(238)))), ((int)(((byte)(242)))));
             this.button12.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button12.Location = new System.Drawing.Point(463, 27);
+            this.button12.Location = new System.Drawing.Point(424, 27);
             this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(265, 30);
+            this.button12.Size = new System.Drawing.Size(400, 30);
             this.button12.TabIndex = 12;
-            this.button12.Text = "Xem chi tiết thông tin dịch vụ";
+            this.button12.Text = "Xem chi tiết thông tin toa thuốc";
             this.button12.UseVisualStyleBackColor = false;
             this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
@@ -226,9 +226,9 @@ namespace GUI
             this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(238)))), ((int)(((byte)(242)))));
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.Location = new System.Drawing.Point(956, 27);
+            this.button6.Location = new System.Drawing.Point(888, 27);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(135, 30);
+            this.button6.Size = new System.Drawing.Size(203, 30);
             this.button6.TabIndex = 10;
             this.button6.Text = "Xem xóa";
             this.button6.UseVisualStyleBackColor = false;
@@ -242,7 +242,7 @@ namespace GUI
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.Location = new System.Drawing.Point(151, 27);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(97, 30);
+            this.button5.Size = new System.Drawing.Size(209, 30);
             this.button5.TabIndex = 9;
             this.button5.Text = "Xóa";
             this.button5.UseVisualStyleBackColor = false;

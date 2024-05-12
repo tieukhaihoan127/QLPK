@@ -95,7 +95,7 @@ namespace BUS
             }
             else
             {
-                id = "BS01";
+                id = "BS0001";
             }
             return id;
         }
