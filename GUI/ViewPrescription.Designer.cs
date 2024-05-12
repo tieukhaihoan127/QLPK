@@ -400,9 +400,9 @@ namespace GUI
             this.label20.AutoSize = true;
             this.label20.Location = new System.Drawing.Point(157, 171);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(54, 16);
+            this.label20.Size = new System.Drawing.Size(34, 16);
             this.label20.TabIndex = 31;
-            this.label20.Text = "lần/phút";
+            this.label20.Text = "bpm";
             // 
             // label21
             // 

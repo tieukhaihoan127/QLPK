@@ -233,11 +233,11 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(321, 236);
+            this.label13.Location = new System.Drawing.Point(321, 239);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(34, 16);
+            this.label13.Size = new System.Drawing.Size(54, 16);
             this.label13.TabIndex = 16;
-            this.label13.Text = "bpm";
+            this.label13.Text = "lần/phút";
             // 
             // textBox8
             // 
@@ -271,7 +271,6 @@
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(102, 22);
             this.textBox9.TabIndex = 12;
-            this.textBox9.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // label16
             // 
@@ -323,7 +322,6 @@
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(102, 22);
             this.textBox6.TabIndex = 6;
-            this.textBox6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // label9
             // 

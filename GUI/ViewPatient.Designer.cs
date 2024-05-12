@@ -151,9 +151,9 @@
             this.label17.AutoSize = true;
             this.label17.Location = new System.Drawing.Point(661, 363);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(47, 16);
+            this.label17.Size = new System.Drawing.Size(54, 16);
             this.label17.TabIndex = 34;
-            this.label17.Text = "mmHg";
+            this.label17.Text = "lần/phút";
             // 
             // textBox11
             // 
