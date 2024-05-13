@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using BUS;
 using System.Windows.Forms;
 using System.Numerics;
+using System.Text.RegularExpressions;
 
 namespace GUI
 {
@@ -71,6 +72,28 @@ namespace GUI
             id = MaNV;
         }
 
+        private void EmailTextBox_Leave(object sender, EventArgs e)
+        {
+            string emailAddress = textBox5.Text;
+            if (IsEmailValid(emailAddress))
+            {
+                MessageBox.Show("Địa chỉ email hợp lệ.");
+            }
+            else
+            {
+                MessageBox.Show("Địa chỉ email không hợp lệ.");
+                textBox5.Focus();
+                textBox5.Text = "";
+            }
+        }
+
+        private bool IsEmailValid(string emailAddress)
+        {
+            string pattern = @"^[a-zA-Z0-9._%+-]+@gmail\.com$";
+            Regex regex = new Regex(pattern);
+            return regex.IsMatch(emailAddress);
+        }
+
         private void textBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -106,36 +129,7 @@ namespace GUI
                 MessageBox.Show("Vui lòng nhập dữ liệu vào ô Email !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 textBox5.Focus();
             }
-            if (string.IsNullOrWhiteSpace(textBox6.Text))
-            {
-                MessageBox.Show("Vui lòng nhập dữ liệu vào ô Địa chỉ liên hệ !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                textBox6.Focus();
-            }
-            if (string.IsNullOrWhiteSpace(textBox7.Text))
-            {
-                MessageBox.Show("Vui lòng nhập dữ liệu vào ô Lương !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                textBox7.Focus();
-            }
-            if (string.IsNullOrWhiteSpace(textBox8.Text))
-            {
-                MessageBox.Show("Vui lòng nhập dữ liệu vào ô Kinh nghiệm !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                textBox8.Focus();
-            }
-            if (string.IsNullOrWhiteSpace(textBox9.Text))
-            {
-                MessageBox.Show("Vui lòng nhập dữ liệu vào ô Chuyên ngành !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                textBox9.Focus();
-            }
-            if (string.IsNullOrWhiteSpace(textBox10.Text))
-            {
-                MessageBox.Show("Vui lòng nhập dữ liệu vào ô Ngôn ngữ !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                textBox10.Focus();
-            }
-            if (string.IsNullOrWhiteSpace(textBox11.Text))
-            {
-                MessageBox.Show("Vui lòng nhập dữ liệu vào ô Học vấn !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                textBox11.Focus();
-            }
+        
         }
 
 
@@ -155,6 +149,8 @@ namespace GUI
             string NgonNgu = textBox10.Text;
             string tt = comboBox2.Text;
             string matkhau = textBox4.Text;
+
+
             nv = new BUS_NhanVien(id, ten, sdt, gender, email, diachi, CMND, "", time, luong);
             bs = new BUS_BacSi(id, chuyen, hocvan, KinhNghiem, NgonNgu, "");
             acc = new BUS_TaiKhoan("", "", "", id, DateTime.Now);

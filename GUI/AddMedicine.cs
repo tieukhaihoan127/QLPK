@@ -64,6 +64,8 @@ namespace GUI
             loadComboBox();
         }
 
+
+
         private void button1_Click(object sender, EventArgs e)
         {
             try
@@ -72,9 +74,30 @@ namespace GUI
                 string NSX = textBox2.Text;
                 string dm = comboBox1.Text;
                 string dvt = comboBox2.Text;
-                BigInteger gianhap = BigInteger.Parse(textBox4.Text);
-                BigInteger giaban = BigInteger.Parse(textBox3.Text);
+                BigInteger gianhap = 0;
+                if(textBox4.Text != "")
+                {
+                    gianhap = BigInteger.Parse(textBox4.Text);
+                }
+                BigInteger giaban = 0;
+                if(textBox3.Text != "")
+                {
+                    giaban = BigInteger.Parse(textBox3.Text);
+                }
                 string cachdung = richTextBox1.Text;
+
+                if(ten == "" || NSX == "" || dm == "" || dvt == "" || textBox4.Text == "" || textBox3.Text == "" )
+                {
+                    MessageBox.Show("Bạn chưa nhập đủ thông tin của thuốc");
+                    textBox1.Text = "";
+                    textBox2.Text = "";
+                    comboBox1.Text = "";
+                    comboBox2.Text = "";
+                    textBox4.Text = "";
+                    textBox3.Text = "";
+                    richTextBox1.Text = "";
+                    return;
+                }
 
 
                 t = new BUS_Thuoc("", ten, dvt, gianhap, giaban, dm, NSX, DateTime.Now, cachdung, "Active");

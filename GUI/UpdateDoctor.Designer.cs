@@ -174,7 +174,7 @@
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(305, 22);
             this.textBox5.TabIndex = 11;
-            this.textBox5.Leave += new System.EventHandler(this.textBox1_Leave);
+            this.textBox5.Leave += new System.EventHandler(this.EmailTextBox_Leave);
             // 
             // label7
             // 
@@ -192,7 +192,6 @@
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(305, 22);
             this.textBox6.TabIndex = 14;
-            this.textBox6.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // label8
             // 
@@ -210,8 +209,6 @@
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(305, 22);
             this.textBox7.TabIndex = 16;
-            this.textBox7.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
-            this.textBox7.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // label9
             // 
@@ -229,7 +226,6 @@
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(305, 22);
             this.textBox8.TabIndex = 20;
-            this.textBox8.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // label10
             // 
@@ -247,7 +243,6 @@
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(305, 22);
             this.textBox9.TabIndex = 18;
-            this.textBox9.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // label11
             // 
@@ -265,7 +260,6 @@
             this.textBox10.Name = "textBox10";
             this.textBox10.Size = new System.Drawing.Size(305, 22);
             this.textBox10.TabIndex = 24;
-            this.textBox10.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // label12
             // 
@@ -283,7 +277,6 @@
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new System.Drawing.Size(305, 22);
             this.textBox11.TabIndex = 22;
-            this.textBox11.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // label13
             // 

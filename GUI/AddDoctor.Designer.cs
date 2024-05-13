@@ -169,6 +169,7 @@
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(305, 22);
             this.textBox5.TabIndex = 11;
+            this.textBox5.Leave += new System.EventHandler(this.EmailTextBox_Leave);
             // 
             // label7
             // 

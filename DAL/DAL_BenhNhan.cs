@@ -42,6 +42,12 @@ namespace DAL
             return Connection.selectQuery(query);
         }
 
+        public DataTable selectPhoneNumber(string sdt)
+        {
+            string query = "SELECT * FROM BenhNhan WHERE SDT ='" + sdt + "'";
+            return Connection.selectQuery(query);
+        }
+
         public DataTable getPatientDesc()
         {
             string query = "SELECT TOP 1 MaBN FROM BenhNhan ORDER BY MaBN DESC";

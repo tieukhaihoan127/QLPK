@@ -181,7 +181,6 @@
             this.richTextBox1.Size = new System.Drawing.Size(536, 49);
             this.richTextBox1.TabIndex = 13;
             this.richTextBox1.Text = "";
-            this.richTextBox1.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // label7
             // 

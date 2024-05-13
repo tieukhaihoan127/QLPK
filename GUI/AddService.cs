@@ -41,13 +41,34 @@ namespace GUI
             loadComboBox();
         }
 
+        private void textBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             try
             {
                 string ten = textBox1.Text;
                 string donvi = comboBox1.Text;
-                BigInteger gia = BigInteger.Parse(textBox2.Text);
+                BigInteger gia = 0;
+                if(textBox2.Text != "")
+                {
+                    gia = BigInteger.Parse(textBox2.Text);
+                }
+
+                if(ten == "" || donvi == "" || textBox2.Text == "")
+                {
+                    MessageBox.Show("Bạn chưa nhập đủ thông tin dịch vụ");
+                    textBox1.Text = "";
+                    comboBox1.Text = "";
+                    textBox2.Text = "";
+                    return;
+                }
 
 
                 dv = new BUS_DichVu("", ten, gia, donvi, DateTime.Now, "Active");

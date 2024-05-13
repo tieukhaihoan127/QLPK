@@ -208,12 +208,8 @@ namespace GUI
                 {
                     dv.updateActiveQuery(dataGridView1);
                     Form_Load(sender, e);
-                    MessageBox.Show("Đã khôi phục thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                else
-                {
-                    MessageBox.Show("Hủy khôi phục", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+
             }
         }
 

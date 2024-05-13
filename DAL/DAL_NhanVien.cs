@@ -92,6 +92,18 @@ namespace DAL
             return Connection.selectQuery(query);
         }
 
+        public DataTable selectPhone(string phone)
+        {
+            string query = "SELECT * FROM NhanVien WHERE SDT ='" + phone + "'";
+            return Connection.selectQuery(query);
+        }
+
+        public DataTable selectCMND(string CMND)
+        {
+            string query = "SELECT * FROM NhanVien WHERE CMND ='" + CMND + "'";
+            return Connection.selectQuery(query);
+        }
+
         public void addQuery(string id)
         {
             string query = "INSERT INTO NhanVien VALUES ('" + id + "',N'" + nv._Ten + "','" + nv._SDT + "',N'" + nv._GioiTinh + "','" + nv._Email + "','" + nv._NgaySinh + "',N'" + nv._DiaChiLienHe + "','" + nv._CMND + "'," + nv._Luong + ",N'" + nv._VaiTro + "')";

@@ -132,6 +132,11 @@ namespace BUS
             return bn.selectFilterTime(first, second);  
         }
 
+        public DataTable selectPhoneNumber(string sdt)
+        {
+            return bn.selectPhoneNumber(sdt);
+        }
+
         public void updateQuery(DataGridView dataGridView1)
         {
             string text = getMaBNDelete(dataGridView1);

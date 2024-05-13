@@ -11,6 +11,7 @@ using BUS;
 using System.Windows.Forms;
 using System.Net.NetworkInformation;
 using System.Web.Caching;
+using System.Text.RegularExpressions;
 
 namespace GUI
 {
@@ -37,6 +38,28 @@ namespace GUI
             mainForm.openChildForm(new DoctorManagement(mainForm, role));
             this.Hide();
             mainForm.Show();
+        }
+
+        private void EmailTextBox_Leave(object sender, EventArgs e)
+        {
+            string emailAddress = textBox5.Text;
+            if (IsEmailValid(emailAddress))
+            {
+                MessageBox.Show("Địa chỉ email hợp lệ.");
+            }
+            else
+            {
+                MessageBox.Show("Địa chỉ email không hợp lệ.");
+                textBox5.Text = "";
+                textBox5.Focus(); 
+            }
+        }
+
+        private bool IsEmailValid(string emailAddress)
+        {
+            string pattern = @"^[a-zA-Z0-9._%+-]+@gmail\.com$";
+            Regex regex = new Regex(pattern);
+            return regex.IsMatch(emailAddress);
         }
 
         private void textBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -73,6 +96,22 @@ namespace GUI
             }
         }
 
+        private void disableText()
+        {
+            textBox1.Text = "";
+            textBox2.Text = "";
+            textBox3.Text = "";
+            textBox5.Text = "";
+            dateTimePicker1.Value = DateTime.Now;
+            textBox6.Text = "";
+            textBox7.Text = "";
+            textBox9.Text = "";
+            textBox8.Text = "";
+            textBox11.Text = "";
+            textBox10.Text = "";
+            comboBox1.Text = "";
+        }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -84,15 +123,40 @@ namespace GUI
                 string email = textBox5.Text;
                 DateTime date = dateTimePicker1.Value;
                 string contact = textBox6.Text;
-                BigInteger salary = BigInteger.Parse(textBox7.Text);
+                BigInteger salary = 0;
+                if(textBox7.Text != "")
+                {
+                    salary = BigInteger.Parse(textBox7.Text);
+                }
                 string chuyen = textBox9.Text;
                 string yoe = textBox8.Text;
                 string hv = textBox11.Text;
                 string lang = textBox10.Text;
                 string gender = comboBox1.Text;
 
+                if(ten == ""  || phone == ""  || email == "" || date == DateTime.Now || gender == "" )
+                {
+                    MessageBox.Show("Chưa điền đủ tối thiểu thông tin nhân viên");
+                    disableText();
+                    return;
+                }
+
                 nv = new BUS_NhanVien("", ten, phone, gender, email, contact, CMND, "BacSi", date, salary);
                 bs = new BUS_BacSi("", chuyen, hv, yoe, lang, "Active");
+
+                if(nv.selectPhone(phone).Rows.Count > 0)
+                {
+                    MessageBox.Show("Số điện thoại đã tồn tại !");
+                    disableText();
+                    return;
+                }
+
+                if (nv.selectCMND(CMND).Rows.Count > 0)
+                {
+                    MessageBox.Show("Chứng Minh Nhân Dân đã tồn tại !");
+                    disableText();
+                    return;
+                }
 
                 string username = nv.getName(ten) + phone;
                 string pass = nv.getPass(ten);

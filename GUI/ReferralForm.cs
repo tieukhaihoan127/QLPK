@@ -278,6 +278,15 @@ namespace GUI
                 BigInteger total = ttt.getTongTien(dataGridView1);
                 DateTime tk = dateTimePicker3.Value;
 
+                if (comboBox2.Text == "" || richTextBox1.Text == "" || richTextBox2.Text == "")
+                {
+                    MessageBox.Show("Bạn chưa nhập đủ thông tin");
+                    comboBox2.Text = "";
+                    richTextBox1.Text = "";
+                    richTextBox2.Text = "";
+                    return;
+                }
+
                 if (radioButton1.Checked == true)
                 {
                     gcd = new BUS_GiayChiDinh("", bn, tiensu, chandoan, trieuchung, loidan, "Active", DateTime.Now, tk, total);

@@ -52,41 +52,7 @@ namespace GUI
                 MessageBox.Show("Vui lòng nhập dữ liệu vào ô Số điện thoại !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 textBox2.Focus();
             }
-            if (string.IsNullOrWhiteSpace(textBox3.Text))
-            {
-                MessageBox.Show("Vui lòng nhập dữ liệu vào ô Địa chỉ !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                textBox3.Focus();
-            }
-            if (string.IsNullOrWhiteSpace(textBox4.Text))
-            {
-                MessageBox.Show("Vui lòng nhập dữ liệu vào ô Cân nặng !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                textBox4.Focus();
-            }
-            if (string.IsNullOrWhiteSpace(textBox5.Text))
-            {
-                MessageBox.Show("Vui lòng nhập dữ liệu vào ô Sp02 !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                textBox5.Focus();
-            }
-            if (string.IsNullOrWhiteSpace(textBox6.Text))
-            {
-                MessageBox.Show("Vui lòng nhập dữ liệu vào ô Nhiệt độ !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                textBox6.Focus();
-            }
-            if (string.IsNullOrWhiteSpace(textBox7.Text))
-            {
-                MessageBox.Show("Vui lòng nhập dữ liệu vào ô Mạch !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                textBox7.Focus();
-            }
-            if (string.IsNullOrWhiteSpace(textBox8.Text))
-            {
-                MessageBox.Show("Vui lòng nhập dữ liệu vào ô Nhịp thở !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                textBox8.Focus();
-            }
-            if (string.IsNullOrWhiteSpace(textBox9.Text))
-            {
-                MessageBox.Show("Vui lòng nhập dữ liệu vào ô Huyết áp !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                textBox9.Focus();
-            }
+            
         }
 
         public void updateCurrent(string MaBN)

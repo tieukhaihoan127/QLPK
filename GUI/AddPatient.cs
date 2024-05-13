@@ -36,6 +36,21 @@ namespace GUI
             }
         }
 
+        private void disabledBox()
+        {
+            textBox1.Text = "";
+            textBox2.Text = "";
+            dateTimePicker1.Value = DateTime.Now;
+            comboBox1.Text = "";
+            textBox3.Text = "";
+            textBox4.Text = "";
+            textBox5.Text = "";
+            textBox6.Text = "";
+            textBox7.Text = "";
+            textBox9.Text = "";
+            textBox8.Text = "";
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             try
@@ -53,7 +68,21 @@ namespace GUI
                 string huyetap = textBox9.Text;
                 string nhiptho = textBox8.Text;
 
+                if(ten == "" || sdt == "" || gioitinh == "" || ngaysinh == DateTime.Now)
+                {
+                    MessageBox.Show("Bạn chưa điền đủ thông in tối thiểu của bệnh nhân !");
+                    disabledBox();
+                    return;
+                }
+
                 bn = new BUS_BenhNhan("", ten, sdt, ngaysinh, gioitinh, diachi, cannang, sp02, nhietdo, mach, huyetap, nhiptho, "Active", DateTime.Now);
+
+                if(bn.selectPhoneNumber(sdt).Rows.Count > 0)
+                {
+                    MessageBox.Show("Số điện thoại của bệnh nhân đã tồn tại !");
+                    disabledBox();
+                    return;
+                }
                 bn.addQuery();
                 mainForm.openChildForm(new PatientManagement(mainForm, role));
                 this.Hide();

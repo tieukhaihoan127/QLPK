@@ -660,9 +660,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox9</rd:DefaultName>
             <Top>2.00109in</Top>
-            <Left>4.32029in</Left>
+            <Left>3.33227in</Left>
             <Height>0.25in</Height>
-            <Width>1.60125in</Width>
+            <Width>2.58927in</Width>
             <ZIndex>19</ZIndex>
             <Style>
               <Border>
@@ -981,7 +981,7 @@
             <Top>1.44554in</Top>
             <Left>1.39848in</Left>
             <Height>0.5in</Height>
-            <Width>4.52306in</Width>
+            <Width>4.52305in</Width>
             <ZIndex>20</ZIndex>
             <Style>
               <Border>

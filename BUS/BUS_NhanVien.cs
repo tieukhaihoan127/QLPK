@@ -62,6 +62,16 @@ namespace BUS
             return nv.selectTimeFilter(first, second);
         }
 
+        public DataTable selectPhone(string phone)
+        {
+            return nv.selectPhone(phone);
+        }
+
+        public DataTable selectCMND(string CMND)
+        {
+            return nv.selectCMND(CMND);
+        }
+
         public DataTable getDoctorDesc()
         {
             return nv.getDoctorDesc();
@@ -119,7 +129,7 @@ namespace BUS
 
         public string getName(string name)
         {
-            string lower = name.ToLower();
+            string lower = RemoveDiacritics(name.ToLower());
             string[] nameParts = lower.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
             return nameParts[nameParts.Length - 1];
         }

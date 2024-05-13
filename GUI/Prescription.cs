@@ -338,6 +338,15 @@ namespace GUI
                 DateTime tk = dateTimePicker3.Value;
                 BigInteger tongtien = tt.getTongTien(dataGridView1);
 
+                if(comboBox2.Text == "" || richTextBox1.Text == "" || richTextBox2.Text == "")
+                {
+                    MessageBox.Show("Bạn chưa nhập đủ thông tin");
+                    comboBox2.Text = "";
+                    richTextBox1.Text = "";
+                    richTextBox2.Text = "";
+                    return;
+                }
+
                 if (radioButton1.Checked == true)
                 {
                     toa = new BUS_Toa("", bn, tiensu, chandoan, trieuchung, loidan, "Active", int.Parse(slt), DateTime.Now, tk, tongtien);
